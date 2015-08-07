@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="C:\Users\Administrador\Desktop\Instalacion" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Perfil1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="imagenes/login.gif" publishTime="02/01/2015 16:56:57" />
+    <file relUrl="Presentacion/Administracion.aspx" publishTime="11/26/2014 00:45:44" />
+    <file relUrl="Styles/Site2.css" publishTime="01/25/2012 18:05:51" />
+    <file relUrl="Presentacion/Anular.aspx" publishTime="12/06/2014 02:37:39" />
+    <file relUrl="Presentacion/resuelve.aspx" publishTime="01/31/2015 16:54:31" />
+    <file relUrl="Global.asax" publishTime="11/26/2014 00:50:01" />
+    <file relUrl="imagenes/icon-excel.gif" publishTime="01/29/2015 14:59:08" />
+    <file relUrl="Styles/Site.css" publishTime="01/23/2015 18:17:47" />
+    <file relUrl="Presentacion/About.aspx" publishTime="11/26/2014 00:45:44" />
+    <file relUrl="Site.Master" publishTime="02/01/2015 16:15:18" />
+    <file relUrl="imagenes/calendario.gif" publishTime="01/23/2015 19:19:09" />
+    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="11/26/2014 00:50:01" />
+    <file relUrl="imagenes/btnLogout.gif" publishTime="02/01/2015 16:13:03" />
+    <file relUrl="Presentacion/DetalleSolicitud.aspx" publishTime="01/26/2015 23:44:22" />
+    <file relUrl="imagenes/editar.gif" publishTime="06/12/2011 22:04:22" />
+    <file relUrl="imagenes/logout.gif" publishTime="02/01/2015 15:55:13" />
+    <file relUrl="bin/WorkflowSolicitudes.dll" publishTime="02/01/2015 20:52:51" />
+    <file relUrl="imagenes/guardar.gif" publishTime="01/15/2015 00:30:58" />
+    <file relUrl="imagenes/icono_buscar.gif" publishTime="01/21/2015 18:05:07" />
+    <file relUrl="imagenes/login_icon.png" publishTime="01/29/2015 13:38:17" />
+    <file relUrl="Presentacion/MantFlujoSolicitudes.aspx" publishTime="02/01/2015 12:24:53" />
+    <file relUrl="Presentacion/MantTipoSolicitudes.aspx" publishTime="02/01/2015 17:23:14" />
+    <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="11/26/2014 00:50:01" />
+    <file relUrl="imagenes/boton_volver_publico.gif" publishTime="01/30/2015 19:07:09" />
+    <file relUrl="Presentacion/MantActividades.aspx" publishTime="01/29/2015 15:55:32" />
+    <file relUrl="imagenes/logoCiisa.gif" publishTime="01/21/2015 21:30:14" />
+    <file relUrl="Presentacion/Login.aspx" publishTime="02/01/2015 17:40:55" />
+    <file relUrl="imagenes/login-button.png" publishTime="01/29/2015 13:01:06" />
+    <file relUrl="Styles/bootstrap.css" publishTime="01/26/2015 15:26:02" />
+    <file relUrl="Presentacion/NuevaSolicitud.aspx" publishTime="01/31/2015 11:40:09" />
+    <file relUrl="Presentacion/BandejaEntrada.aspx" publishTime="01/31/2015 11:48:26" />
+    <file relUrl="imagenes/btn_eliminar.gif" publishTime="01/30/2015 17:29:34" />
+    <file relUrl="imagenes/lupa.gif" publishTime="01/15/2015 00:37:47" />
+    <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="11/26/2014 00:50:01" />
+    <file relUrl="Web.config" publishTime="02/01/2015 20:52:55" />
+    <file relUrl="imagenes/eliminar.gif" publishTime="01/15/2015 00:31:10" />
+    <file relUrl="imagenes/guardar3.gif" publishTime="01/29/2015 15:11:03" />
+    <file relUrl="imagenes/agregar.gif" publishTime="01/23/2015 20:27:00" />
+    <file relUrl="Presentacion/ListaDeTareas.aspx" publishTime="01/31/2015 20:42:38" />
+    <file relUrl="Presentacion/ConsultaSolicitudes.aspx" publishTime="01/30/2015 00:41:18" />
+    <file relUrl="Presentacion/Default.aspx" publishTime="02/01/2015 16:01:54" />
+    <file relUrl="imagenes/boton.guardar.gif" publishTime="01/29/2015 15:11:29" />
+    <file relUrl="bin/WorkflowSolicitudes.pdb" publishTime="02/01/2015 20:52:50" />
+  </publishProfile>
+</publishData>
