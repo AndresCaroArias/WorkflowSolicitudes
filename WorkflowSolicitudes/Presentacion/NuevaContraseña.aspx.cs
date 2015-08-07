@@ -10,18 +10,29 @@ namespace WorkflowSolicitudes
 {
     public partial class Formulario_web15 : System.Web.UI.Page
     {
-        private bool Validar(string dato)
+      
+        public static String StrRutUsuario { get; set; }
+
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+
+
+
+                StrRutUsuario = Convert.ToString(Session["strRutUsuario"]);
+
+            }
+        }
+
+          private bool Validar(string dato)
         {
             if (dato != "")
                 return true;
 
             else
                 return false;
-        }
-        public static String StrRutUsuario { get; set; }
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            StrRutUsuario = Convert.ToString(Session["strRutUsuario"]);
         }
 
         protected void btnCambiarClave_Click(object sender, EventArgs e)
@@ -31,14 +42,15 @@ namespace WorkflowSolicitudes
            
                 if (txtNuevaClave.Text.Equals(""))
                 {
-                    LblMensaje.Text = "ERROR : Ingrese la nueva clave";  
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR : Ingrese la nueva clave');</script>");
+
                     return;
                 }
                 else
                 {
                     if (txtRepetirClave.Text.Equals(""))
                     {
-                        LblMensaje.Text = "ERROR : La password Nueva y la password de repeticion no son iguales";
+                        ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR : La password Nueva y la password de repeticion no son iguales');</script>");
                         return; 
                     }
                 }
@@ -47,11 +59,12 @@ namespace WorkflowSolicitudes
 
             if (!txtRepetirClave.Text.Equals(txtNuevaClave.Text))
             {
-                LblMensaje.Text = "ERROR : La password Nueva y la password de repeticion no son iguales ";
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR : La password Nueva y la password de repeticion no son iguales';</script>");
                 return;
             }
-            else {
-                LblMensaje.Text = "La Clave se cambio Exitosamente";
+            else 
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('La Clave se cambio Exitosamente';</script>");
             }
 
 
@@ -59,10 +72,6 @@ namespace WorkflowSolicitudes
             Funciones encriptarMD5 = new Funciones();
             ClaveMd5 = encriptarMD5.EncriptarMD5(txtNuevaClave.Text);
             CambioDePassword.ActualizoPassword(StrRutUsuario, ClaveMd5);
-
-
-
-
 
         }
     }

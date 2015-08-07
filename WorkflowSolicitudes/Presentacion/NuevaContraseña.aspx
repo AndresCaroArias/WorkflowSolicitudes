@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="NuevaContraseña.aspx.cs" Inherits="WorkflowSolicitudes.Formulario_web15" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
- <link href="../css/alertify.core.css" rel="stylesheet" type="text/css" />
- <link href="../css/alertify.default.css" rel="stylesheet" type="text/css" id="toggleCSS" />
+
+    <link href="../css/alertify.core.css" rel="stylesheet" type="text/css" />
+    <link href="../css/alertify.default.css" rel="stylesheet" type="text/css" id="toggleCSS" />
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
 
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div class="container">
 
 <div class ="row-fluid">
