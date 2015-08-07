@@ -95,17 +95,10 @@ namespace WorkflowSolicitudes.Presentacion
                         
                     }
 
-                if (strSecuenciaNo.Equals(String.Empty))
-                {
+                if (strSecuenciaNo.Equals(String.Empty)) // Me indica si muestro el SI o el NO
+                {                                        
                     RbtSI.Visible      = false;
                     RbtNO.Visible      = false;
-                    lblAprobar.Visible = false;
-                }
-
-                if (strSecuenciaSi.Equals("0") && (strSecuenciaNo.Equals("0")))
-                {
-                    RbtSI.Visible = false;
-                    RbtNO.Visible = false;
                     lblAprobar.Visible = false;
                 }
 
@@ -119,7 +112,7 @@ namespace WorkflowSolicitudes.Presentacion
 
                 if (!ExistenAdjuntos.Equals(0))
                 {
-                    HypAdjuntos.Text = "Ver documetos adjuntos asociados a la solicitud";
+                    HypAdjuntos.Text        = "Ver documetos adjuntos asociados a la solicitud";
                     HypAdjuntos.NavigateUrl = "VerAdjuntos.aspx?Folio=" + intFolioSolicitud + "&Tipo=S";
 
                 }
@@ -240,6 +233,7 @@ namespace WorkflowSolicitudes.Presentacion
         {
             NegAuditoria         InsertarLog       = new NegAuditoria();
             NegFlujoSolicitud    NegFlujoSolicitud = new NegFlujoSolicitud();
+            NegDetalleSolicitud ResuelveActividad  = new NegDetalleSolicitud();
             strGlosaDetalleSol = txtResolucion.Text;
 
 
@@ -259,10 +253,11 @@ namespace WorkflowSolicitudes.Presentacion
             }
             
 
-            NegDetalleSolicitud ResuelveActividad = new NegDetalleSolicitud();
+            
             if (RbtSI.Checked)
             {
                 intCodEstadSol = 2;
+                intCodEstadoAct = 8;
                 strAprobadaAuditoria = "APROBADA";
                 strSiguienteSecuencia = strSecuenciaSi;
                 InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "RESUELVE LA ACTIVIDAD ", "ACTIVIDIDAD APROBADA " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio.Text);
@@ -297,6 +292,7 @@ namespace WorkflowSolicitudes.Presentacion
             if (RbtSI.Checked == false && RbtNO.Checked == false)
             {
                 intCodEstadoAct = 8;
+                strSiguienteSecuencia = strSecuenciaSi;
                 strContinuaAuditoria = "CONTINUA";
             }
 

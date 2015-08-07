@@ -96,12 +96,13 @@
         
         
         
+        
         DataKeyNames="intSecuencia,strRutUsuario,strAprobador,intCodUnidad,strSi,strNo" ForeColor="Black" 
         GridLines="Vertical" 
         onselectedindexchanged="grvModeladorSolicitud_SelectedIndexChanged" 
         Width="829px"
         emptydatatext="No existen datos para la consulta realizada" 
-        Font-Bold="False" PageSize="5">
+        Font-Bold="False" PageSize="20">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
         <AlternatingRowStyle BackColor="#CCCCCC" />

@@ -181,6 +181,7 @@
     <Compile Include="Entidades\Carrera.cs" />
     <Compile Include="Entidades\CSolicitudes.cs" />
     <Compile Include="Entidades\DetalleSolicitud.cs" />
+    <Compile Include="Entidades\Errores.cs" />
     <Compile Include="Entidades\Estados.cs" />
     <Compile Include="Entidades\Feriados.cs" />
     <Compile Include="Entidades\FlujoSolicitud.cs" />

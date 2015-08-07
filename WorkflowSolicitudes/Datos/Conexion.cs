@@ -55,6 +55,7 @@ namespace WorkflowSolicitudes.Datos
             }
             catch (Exception ex)
             {
+                 
                 throw;
             }
             finally

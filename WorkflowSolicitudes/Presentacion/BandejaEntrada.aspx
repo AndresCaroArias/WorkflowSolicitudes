@@ -130,8 +130,7 @@ textbox
             onpageindexchanging="GridView1_PageIndexChanging" AllowSorting="True" 
             onsorting="GridView1_Sorting" style="margin-left: 0px; font-size: small;" 
         Font-Bold="False" 
-        EmptyDataText="No existen solicitudes para usted" Width="770px" 
-        PageSize="7">
+        EmptyDataText="No existen solicitudes para usted" Width="770px">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
             <asp:CommandField ButtonType="Image" HeaderText="Ver Detalle" 
