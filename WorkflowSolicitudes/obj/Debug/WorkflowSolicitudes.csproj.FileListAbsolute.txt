@@ -15,3 +15,4 @@ C:\Users\Administrador\Desktop\WorkflowSolicitudes\WorkflowSolicitudes\bin\Workf
 C:\Users\Administrador\Desktop\WorkflowSolicitudes\WorkflowSolicitudes\bin\itextsharp.dll
 C:\Users\Administrador\Desktop\WorkflowSolicitudes\WorkflowSolicitudes\obj\Debug\WorkflowSolicitudes.dll
 C:\Users\Administrador\Desktop\WorkflowSolicitudes\WorkflowSolicitudes\obj\Debug\WorkflowSolicitudes.pdb
+C:\Users\Administrador\Desktop\WorkflowSolicitudes\WorkflowSolicitudes\obj\Debug\WorkflowSolicitudes.csprojResolveAssemblyReference.cache

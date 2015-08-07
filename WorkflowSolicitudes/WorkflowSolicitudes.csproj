@@ -160,6 +160,7 @@
     <Compile Include="Datos\DatosAdjutos.cs" />
     <Compile Include="Datos\DatosAuditoria.cs" />
     <Compile Include="Datos\DatosCSolicitudes.cs" />
+    <Compile Include="Datos\DatosErrores.cs" />
     <Compile Include="Datos\DatosFeriados.cs" />
     <Compile Include="Datos\DatosFlujoSolicitud.cs" />
     <Compile Include="Datos\DatosAlumnos.cs" />

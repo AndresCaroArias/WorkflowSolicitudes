@@ -102,6 +102,8 @@ namespace WorkflowSolicitudes.Presentacion
                     lblAprobar.Visible = false;
                 }
 
+                
+
                 mostrar_Historial(intFolioSolicitud);
                 NegTipoSolicitud CantMaxDocumentos = new NegTipoSolicitud();
                 intCantMaxDocumentos = CantMaxDocumentos.ObtenerCantMaxDocByTipoSolicitud(intCodTipoSolicitud);
