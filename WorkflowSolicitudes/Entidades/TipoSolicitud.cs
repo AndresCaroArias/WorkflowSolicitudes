@@ -11,7 +11,8 @@ namespace WorkflowSolicitudes.Entidades
 
         private int _intCodTipoSolicitud;        
         private string _strDescripcionSolicitud;
-        private int _intEstadoSolicitud;        
+        private int _intEstadoSolicitud;
+        private string _strEstadoSolicitud;
         private DateTime _dtmFechaIncioSol;        
         private DateTime _dtmFechaTerminoSol;
         private int _intCantMaxSolicitud;
@@ -24,6 +25,20 @@ namespace WorkflowSolicitudes.Entidades
 
         #region Cosntructor
         public TipoSolicitud() { }
+
+        public TipoSolicitud(int intCodTipoSolicitud, string strDescripcionSolicitud, string strEstadoSolicitud, DateTime dtmFechaIncioSol, DateTime dtmFechaTerminoSol, int intCantMaxSolicitud, string strOrigenSolicitud, int intCantMaxDoc)
+        {
+            this.intCodTipoSolicitud = intCodTipoSolicitud;
+            this.strDescripcionSolicitud = strDescripcionSolicitud;
+            this.strEstadoSolicitud = strEstadoSolicitud;
+            this.dtmFechaIncioSol = dtmFechaIncioSol;
+            this.dtmFechaTerminoSol = dtmFechaTerminoSol;
+            this.intCantMaxSolicitud = intCantMaxSolicitud;
+            this.strOrigenSolicitud = strOrigenSolicitud;
+            this.intCantMaxDoc = intCantMaxDoc;
+        }
+
+
         public TipoSolicitud(int intCodTipoSolicitud)
         {
             this.intCodTipoSolicitud = intCodTipoSolicitud;
@@ -104,7 +119,13 @@ namespace WorkflowSolicitudes.Entidades
         {
             get { return _intEstadoSolicitud; }
             set { _intEstadoSolicitud = value; }
-        }        
+        }
+
+        public string strEstadoSolicitud
+        {
+            get { return _strEstadoSolicitud; }
+            set { _strEstadoSolicitud = value; }
+        } 
         public DateTime dtmFechaIncioSol
         {
             get { return _dtmFechaIncioSol; }

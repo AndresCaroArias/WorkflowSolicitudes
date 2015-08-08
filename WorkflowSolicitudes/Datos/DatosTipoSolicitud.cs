@@ -163,7 +163,7 @@ namespace WorkflowSolicitudes.Datos
                             LstTipoSolicitud.Add(
                                 new TipoSolicitud((int)dr["CODTIPOSOLICITUD"],
                                     (string)dr["DESCTIPOSOLICITUD"],
-                                    (int)dr["ESTADOSOLICITUD"],
+                                    (string)dr["ESTADOSOLICITUD"],
                                     (DateTime)dr["FECHAINICIO"],
                                     (DateTime)dr["FECHAFIN"],
                                     (int)dr["CANTMAXSOLICITUD"],

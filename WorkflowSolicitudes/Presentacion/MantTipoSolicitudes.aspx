@@ -51,8 +51,8 @@
 <div class ="span4"><asp:DropDownList ID="ddlOrigenSolicitud" runat="server" Height="22px" 
                     Width="329px">
                     <asp:ListItem Value="0">SELECCIONAR</asp:ListItem>
-                    <asp:ListItem Value="E">EXTERNO</asp:ListItem>
-                    <asp:ListItem Value="I">INTERNO</asp:ListItem>
+                    <asp:ListItem Value="EXTERNO">EXTERNO</asp:ListItem>
+                    <asp:ListItem Value="INTERNO">INTERNO</asp:ListItem>
                 </asp:DropDownList></div>
 <div class ="span4"><asp:Label ID="lblMensajeOrigenSol" runat="server" style="color: #FF0000; font-weight: 700"></asp:Label></div>
 </div>
@@ -133,18 +133,28 @@
 
 <div class ="row-fluid">
 <div class ="span12">
-    <asp:GridView AutoGenerateColumns="False" runat="server" 
-        ID="grvTipoSolicitud" DataKeyNames="intCodTipoSolicitud,strDescripcionSolicitud,intCantMaxSolicitud,intEstadoSolicitud,intCantMaxDoc,strOrigenSolicitud,dtmFechaTerminoSol,dtmFechaIncioSol" 
+    <asp:GridView AutoGenerateColumns="False" 
+            runat="server" 
+            ID="grvTipoSolicitud" 
+            DataKeyNames="intCodTipoSolicitud,strDescripcionSolicitud,intCantMaxSolicitud,intEstadoSolicitud,strEstadoSolicitud, intCantMaxDoc,strOrigenSolicitud,dtmFechaTerminoSol,dtmFechaIncioSol" 
             AllowPaging="True"  
-            onpageindexchanging="grvgrvTipoSolicitud_PageIndexChanging" onrowcancelingedit="grvTipoSolicitud_RowCancelingEdit" 
+            onpageindexchanging="grvgrvTipoSolicitud_PageIndexChanging" 
+            onrowcancelingedit="grvTipoSolicitud_RowCancelingEdit" 
             onrowdeleting="grvTipoSolicitud_RowDeleting" 
             onrowediting="grvTipoSolicitud_RowEditing"
             onselectedindexchanged="grvTipoSolicitud_SelectedIndexChanged" 
-        BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
-        CellPadding="3" ForeColor="Black" GridLines="Vertical" 
-        style="text-align: center" Height="90%" Width="90%"
-        emptydatatext="No existen datos para la consulta realizada" 
-        Font-Bold="False">
+            BackColor="White" 
+            BorderColor="#999999" 
+            BorderStyle="Solid" 
+            BorderWidth="1px" 
+            CellPadding="3" 
+            ForeColor="Black" 
+            GridLines="Vertical" 
+            style="text-align: center" 
+            Height="90%" 
+            Width="90%"
+            emptydatatext="No existen datos para la consulta realizada" 
+            Font-Bold="False">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
             <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -175,11 +185,11 @@
             <asp:TemplateField HeaderText="Estado Solicitud">
 
             <ItemTemplate>
-            <asp:Label ID="lblEstadoSolicitud" runat="server" Text='<%#Bind("intEstadoSolicitud") %>'/>
+            <asp:Label ID="lblEstadoSolicitud" runat="server" Text='<%#Bind("strEstadoSolicitud") %>'/>
             </ItemTemplate>
             
             <EditItemTemplate>
-            <asp:TextBox ID="txtEditEstadoSolicitud" runat="server" Maxlength="30"  Text='<%#Bind("intEstadoSolicitud") %>'/>
+            <asp:TextBox ID="txtEditEstadoSolicitud" runat="server" Maxlength="30"  Text='<%#Bind("strEstadoSolicitud") %>'/>
             </EditItemTemplate>
             </asp:TemplateField>                 
 

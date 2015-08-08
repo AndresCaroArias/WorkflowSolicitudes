@@ -19,6 +19,7 @@ namespace WorkflowSolicitudes
         public static string strDescripcionSolicitud { get; set;}
         public static int intCantMaxSolicitud {get; set;}
         public static int intEstadoSolicitud { get; set; }
+        public static string strEstadoSolicitud {get; set;}
         public static int intCantMaxDoc { get; set; }
         public static string strOrigenSolicitud { get; set; }
         public static int intCodTipoSolicitud { get; set; }
@@ -197,6 +198,7 @@ namespace WorkflowSolicitudes
             strDescripcionSolicitud = Convert.ToString(grvTipoSolicitud.DataKeys[row.RowIndex].Values["strDescripcionSolicitud"]);
             intCantMaxSolicitud = Convert.ToInt32(grvTipoSolicitud.DataKeys[row.RowIndex].Values["intCantMaxSolicitud"]);
             intEstadoSolicitud = Convert.ToInt32(grvTipoSolicitud.DataKeys[row.RowIndex].Values["intEstadoSolicitud"]);
+            strEstadoSolicitud = Convert.ToString(grvTipoSolicitud.DataKeys[row.RowIndex].Values["strEstadoSolicitud"]);
             intCantMaxDoc = Convert.ToInt32(grvTipoSolicitud.DataKeys[row.RowIndex].Values["intCantMaxDoc"]);
             strOrigenSolicitud = Convert.ToString(grvTipoSolicitud.DataKeys[row.RowIndex].Values["strOrigenSolicitud"]);
             dtmFechaTerminoSol = Convert.ToDateTime (grvTipoSolicitud.DataKeys[row.RowIndex].Values["dtmFechaTerminoSol"]);
@@ -208,7 +210,8 @@ namespace WorkflowSolicitudes
             ddlOrigenSolicitud.SelectedValue = strOrigenSolicitud;
             txtFechaFin.Text = Convert.ToString(dtmFechaTerminoSol);
             txtFechaInicio.Text = Convert.ToString(dtmFechaIncioSol);
-            if (intEstadoSolicitud.Equals(1))
+            
+            if (strEstadoSolicitud.Equals("ACTIVO"))
             {
                 ChkEstado.Checked = true;
             }

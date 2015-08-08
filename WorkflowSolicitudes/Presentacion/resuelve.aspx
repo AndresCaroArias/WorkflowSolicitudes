@@ -86,8 +86,8 @@
 
 <div class ="row-fluid">
 <div class ="span12">
-    <asp:TextBox ID="txtPeticion" runat="server" Height="54px" MaxLength="500" 
-        ReadOnly="True" TextMode="MultiLine" Width="977px" 
+    <asp:TextBox ID="txtPeticion" runat="server" Height="65px" MaxLength="500" 
+        ReadOnly="True" TextMode="MultiLine" Width="1021px" 
         style="margin-left: 5px"></asp:TextBox></div>
 </div>
 
@@ -119,15 +119,13 @@
         
         onselectedindexchanged="grvMostrarHistorial_SelectedIndexChanged"
         emptydatatext="No existen datos en la Grilla" Font-Bold="False" 
-        Width="986px">
+        Width="1038px">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
         <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
                 <asp:BoundField DataField="intEtapa" HeaderText="Etapa" 
                     SortExpression="intEtapa" />
-                <asp:BoundField DataField="intSecuencia" HeaderText="Secuencia" 
-                    SortExpression="intSecuencia" />
                 <asp:BoundField DataField="strGlosaActividad" HeaderText="Actividad" 
                     SortExpression="strGlosaActividad" />
                 <asp:BoundField DataField="strDescUnidad" HeaderText="Unidad responsable" 
@@ -177,9 +175,10 @@
 </div>
 
 <div class ="row-fluid">
-<div class ="span12"> <asp:TextBox ID="txtResolucion" runat="server" Height="75px" 
-        TextMode="MultiLine" Width="755px" 
-        style="margin-left: 48px; margin-top: 0px"></asp:TextBox></div>
+<div class ="span12"> 
+    <asp:TextBox ID="txtResolucion" runat="server" Height="75px" 
+        TextMode="MultiLine" Width="910px" 
+        style="margin-left: 3px; margin-top: 0px"></asp:TextBox></div>
 </div>
 
 <div class ="row-fluid">

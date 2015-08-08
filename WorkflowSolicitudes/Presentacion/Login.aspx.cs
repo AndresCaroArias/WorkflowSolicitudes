@@ -6,11 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WorkflowSolicitudes.Negocio;
 using System.Text;
+using WorkflowSolicitudes.Entidades;
 
 namespace WorkflowSolicitudes.Presentacion
 {
     public partial class loginWorkFlow : System.Web.UI.Page
     {
+
+        public static List<Usuario> LstUsuarios = new List<Usuario>();
+
+        public static int intEstadoUsua { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -65,6 +71,25 @@ namespace WorkflowSolicitudes.Presentacion
                 }
             }
             NegUsuario NegUsuarios = new NegUsuario();
+
+           
+            NegUsuario ObtenerUsuario = new NegUsuario();
+            LstUsuarios = ObtenerUsuario.ObtenerUsuarioPorRut(TxtUsuario.Text);
+
+            foreach (Usuario Usuarios in LstUsuarios)
+            {
+                intEstadoUsua = Usuarios.intEstadoUsuario;
+
+            }
+
+            if (intEstadoUsua.Equals(0))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Usted no tiene acceso a este sistema, Usuario en estado desactivado');</script>");
+                TxtPassword.Text = String.Empty;
+                TxtUsuario.Text = String.Empty;
+                return;
+            }       
+
             int intCodRoUser = NegUsuarios.ValidarUsuario(strRutUsuario, strPassword);
             if (intCodRoUser == 0)
             {

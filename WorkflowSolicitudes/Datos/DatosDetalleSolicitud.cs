@@ -184,7 +184,25 @@ namespace WorkflowSolicitudes.Datos
             return Conexion.ejecutaNonQuery("sp_Set_Actualiza_ByFechaTomaActividad_DetalleSolicitud", parametros);
         }
 
+        public int ActualizaSolicitudAprobada(int inFolioSolicitud, int intSecuencia)
+        {
 
+            List<DbParameter> parametros = new List<DbParameter>(); ;
+
+            DbParameter paramIntFolioSolicitud = Conexion.dpf.CreateParameter();
+            paramIntFolioSolicitud.DbType = DbType.Int32;
+            paramIntFolioSolicitud.Value = inFolioSolicitud;
+            paramIntFolioSolicitud.ParameterName = "FOLIOSOLICITUD";
+            parametros.Add(paramIntFolioSolicitud);
+
+            DbParameter paramIntSecuencia = Conexion.dpf.CreateParameter();
+            paramIntSecuencia.DbType = DbType.Int32;
+            paramIntSecuencia.Value = intSecuencia;
+            paramIntSecuencia.ParameterName = "SECUENCIA ";
+            parametros.Add(paramIntSecuencia);
+
+            return Conexion.ejecutaNonQuery("sp_Set_ActualizaByFolioEstaAprobada", parametros);
+        }
 
         public int EstaTomadaLaSolicitud(int intFolioSolicitud)
         {
@@ -222,6 +240,42 @@ namespace WorkflowSolicitudes.Datos
             }
         }
 
+
+        public int ConsultaExisteAprobacion(int intFolioSolicitud)
+        {
+
+            int intCantidad = 0;
+            string StoredProcedure = "sp_Get_ConsultaByEstaAprobado_DetalleSolicitud";
+            using (DbConnection con = Conexion.dpf.CreateConnection())
+            {
+                con.ConnectionString = Conexion.constr;
+                using (DbCommand cmd = Conexion.dpf.CreateCommand())
+                {
+
+                    cmd.Connection = con;
+                    cmd.CommandText = StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    DbParameter paramIntFolioSolicitud = cmd.CreateParameter();
+                    paramIntFolioSolicitud.DbType = DbType.Int32;
+                    paramIntFolioSolicitud.ParameterName = "FOLIOSOLICITUD";
+                    paramIntFolioSolicitud.Value = intFolioSolicitud;
+                    cmd.Parameters.Add(paramIntFolioSolicitud);
+
+                    con.Open();
+                    using (DbDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            intCantidad = (int)dr["CANTIDAD"];
+
+                        }
+
+                    }
+                    return intCantidad;
+                }
+            }
+        }
 
         public List<DetalleSolicitud> select_Dinamica_DetalleSolicitudes(int folio)
         {

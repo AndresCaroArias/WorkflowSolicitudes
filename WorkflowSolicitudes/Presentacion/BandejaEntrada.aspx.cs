@@ -25,8 +25,8 @@ namespace WorkflowSolicitudes.Presentacion
 
             //try
             //{
-                PrchBtnHiddenNo.Click += PrchBtnHiddenNo_Click;
-                PrchBtnHiddenYes.Click += PrchBtnHiddenYes_Click;
+                //PrchBtnHiddenNo.Click += PrchBtnHiddenNo_Click;
+                //PrchBtnHiddenYes.Click += PrchBtnHiddenYes_Click;
 
                 //string ref1 = Request.ServerVariables["HTTP_REFERER"];
                 //if (Request.ServerVariables["HTTP_REFERER"].Equals("http://10.0.0.2/Prueba.asp")) /// Codigo para verificar servidor de envio post
@@ -63,17 +63,18 @@ namespace WorkflowSolicitudes.Presentacion
  
         }
 
-         void PrchBtnHiddenYes_Click(object sender, EventArgs e)
-         {
+         //void PrchBtnHiddenYes_Click(object sender, EventArgs e)
+         //{
 
+         //    ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alertify.success('Solicitud Anulada')", true);
+             
 
-             ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alertify.success('Solicitud Anulada')", true);
-         }
+         //}
 
-         void PrchBtnHiddenNo_Click(object sender, EventArgs e)
-         {
-             ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alertify.error('Registro Cancelado')", true);
-         }
+         //void PrchBtnHiddenNo_Click(object sender, EventArgs e)
+         //{
+         //    ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alertify.error('Registro Cancelado')", true);
+         //}
 
          private void Obtener_RutAlumno(string StrCodCli)
          {
@@ -142,8 +143,11 @@ namespace WorkflowSolicitudes.Presentacion
            
         }
 
+
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+
+
             lblMensaje.Text = String.Empty;
 
             int intFolioSolicitud = (int)GridView1.DataKeys[e.RowIndex].Values[0];

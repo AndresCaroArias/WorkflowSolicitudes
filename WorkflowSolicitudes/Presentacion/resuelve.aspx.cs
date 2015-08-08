@@ -40,6 +40,7 @@ namespace WorkflowSolicitudes.Presentacion
         public static string strRechazadaAuditoria { get; set; }
         public static string strContinuaAuditoria { get; set; }
         public static string strSiguienteSecuencia { get; set; }
+        public static int intExisteUnaAprobada { get; set; }
 
 
 
@@ -47,9 +48,7 @@ namespace WorkflowSolicitudes.Presentacion
         {
             NegFlujoSolicitud   NegFlujoSolicitud = new NegFlujoSolicitud();
             NegDetalleSolicitud NegDatellSolicitud = new NegDetalleSolicitud();
-            lblMensaje.Text = String.Empty;
-
-
+         
 
             if (!Page.IsPostBack)
             {
@@ -90,9 +89,9 @@ namespace WorkflowSolicitudes.Presentacion
 
                 foreach (FlujoSolicitud ActividadActual in LstFlujoSolicitud)
                     {
-                        strSecuenciaSi  = ActividadActual.strSi;
-                        strSecuenciaNo  = ActividadActual.strNo;
-                        
+                        strSecuenciaSi  = ActividadActual.strSi.Trim();
+                        strSecuenciaNo  = ActividadActual.strNo.Trim();
+                        intAprobador    = ActividadActual.intAprobador; 
                     }
 
                 if (strSecuenciaNo.Equals(String.Empty)) // Me indica si muestro el SI o el NO
@@ -102,7 +101,20 @@ namespace WorkflowSolicitudes.Presentacion
                     lblAprobar.Visible = false;
                 }
 
-                
+                if (strSecuenciaSi.Equals("0"))
+                {
+                    RbtSI.Visible = false;
+                    RbtNO.Visible = false;
+                    lblAprobar.Visible = false;
+                }
+
+               if (strSecuenciaNo.Equals("0") && (strSecuenciaSi.Equals("0")))
+                {
+                    RbtSI.Visible = false;
+                    RbtNO.Visible = false;
+                    lblAprobar.Visible = false;
+                }
+
 
                 mostrar_Historial(intFolioSolicitud);
                 NegTipoSolicitud CantMaxDocumentos = new NegTipoSolicitud();
@@ -236,7 +248,7 @@ namespace WorkflowSolicitudes.Presentacion
             NegAuditoria         InsertarLog       = new NegAuditoria();
             NegFlujoSolicitud    NegFlujoSolicitud = new NegFlujoSolicitud();
             NegDetalleSolicitud ResuelveActividad  = new NegDetalleSolicitud();
-            strGlosaDetalleSol = txtResolucion.Text;
+           
 
 
             if (!strSecuenciaNo.Equals(String.Empty))
@@ -262,6 +274,12 @@ namespace WorkflowSolicitudes.Presentacion
                 intCodEstadoAct = 8;
                 strAprobadaAuditoria = "APROBADA";
                 strSiguienteSecuencia = strSecuenciaSi;
+
+                if (intAprobador.Equals(1))
+                {
+                    ResuelveActividad.ApruebaLaSolicitud(intFolioSolicitud, intSecuencia);
+                }
+                
                 InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "RESUELVE LA ACTIVIDAD ", "ACTIVIDIDAD APROBADA " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio.Text);
             }
 
@@ -282,12 +300,21 @@ namespace WorkflowSolicitudes.Presentacion
 
             if (strSecuenciaNo.Equals("0") && (strSecuenciaSi.Equals("0")))
             {
-                
                 // FALTA EL ALGORITMO PARA DETERMINAR QUE SI FUE ACEPTADA O REHZADA LA SOLICITUD AL TERMINAR EL PROCESO
-                intCodEstadoAct = 8; 
+                intExisteUnaAprobada = ResuelveActividad.ExisteAlmenosUnaAprobacion(intFolioSolicitud);
+                if (intExisteUnaAprobada.Equals(1) )
+                {
+                    intCodEstadSol = 2;
+                }
+                else
+                {
+                    intCodEstadSol = 3;
+                }
+                intCodEstadoAct = 8;
                 ResuelveActividad.CierraProceso(intFolioSolicitud, intSecuencia, intCodEstadSol, intCodEstadoAct, strGlosaDetalleSol);
-                InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "RESUELVE LA ACTIVIDAD ", "SE COMPLETA LA " + lblActividad.Text + "SE TERMINA EL FLUJO PARA SOLICITUD " + lbltipoSolicitud.Text  + " PARA EL FOLIO :" + lblFolio.Text);
+                InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "RESUELVE LA ACTIVIDAD ", "SE COMPLETA LA " + lblActividad.Text + "SE TERMINA EL FLUJO PARA SOLICITUD " + lbltipoSolicitud.Text + " PARA EL FOLIO :" + lblFolio.Text);
                 Response.Redirect("ListaDeTareas.aspx?StrRutUsuario=" + StrRutResponsable);
+                
             }
 
 
@@ -299,7 +326,6 @@ namespace WorkflowSolicitudes.Presentacion
             }
 
             NegAdjuntos NegAdjuntos = new NegAdjuntos();
-
             foreach (Adjuntos Adjunto in LstAdjuntos)
             {
 
@@ -310,8 +336,7 @@ namespace WorkflowSolicitudes.Presentacion
             grvAdjunto.DataSource = null;
             grvAdjunto.DataBind();
 
-            
-            
+            strGlosaDetalleSol = txtResolucion.Text;
             LstFlujoSolicitud = NegFlujoSolicitud.SelectDatoActividad(intCodTipoSolicitud, Convert.ToInt32(strSiguienteSecuencia));
 
             if (LstFlujoSolicitud.Count.Equals(0))

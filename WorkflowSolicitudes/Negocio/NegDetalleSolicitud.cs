@@ -55,6 +55,18 @@ namespace WorkflowSolicitudes.Negocio
             return EstaTomada.EstaTomadaLaSolicitud(intFolioSolicitud);
         }
 
+        public int ExisteAlmenosUnaAprobacion(int intFolioSolicitud)
+        {
+            DatosDetalleSolicitud ExisteAprobacion = new DatosDetalleSolicitud();
+            return ExisteAprobacion.ConsultaExisteAprobacion(intFolioSolicitud);
+        }
+
+        public int ApruebaLaSolicitud(int intFolioSolicitud, int intSecuencia) 
+        {
+            DatosDetalleSolicitud AprueboSolicitud = new DatosDetalleSolicitud();
+            return AprueboSolicitud.ActualizaSolicitudAprobada(intFolioSolicitud, intSecuencia);
+        }
+
         public List<DetalleSolicitud> HistorialDetalleSolicitud(int Folio)
         {
             DatosDetalleSolicitud HstDetalleSolicitud = new DatosDetalleSolicitud();
