@@ -69,6 +69,14 @@ namespace WorkflowSolicitudes.Negocio
                 return DatActDetalleSolicitud.select_all_EstadosDetSol();
             
         }
+
+        public List<DetalleSolicitud> HistoriadelaSolicitud(int intFolioSolicitud)
+        {
+            DatosDetalleSolicitud DatActDetalleSolicitud = new DatosDetalleSolicitud();
+            return DatActDetalleSolicitud.ConsultaHistoriaActividadesResueltas(intFolioSolicitud);
+
+        }
+        
     
     }
 

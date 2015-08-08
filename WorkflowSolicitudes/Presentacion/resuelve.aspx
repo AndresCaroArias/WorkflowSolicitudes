@@ -124,6 +124,8 @@
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
         <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
+                <asp:BoundField DataField="intEtapa" HeaderText="Etapa" 
+                    SortExpression="intEtapa" />
                 <asp:BoundField DataField="intSecuencia" HeaderText="Secuencia" 
                     SortExpression="intSecuencia" />
                 <asp:BoundField DataField="strGlosaActividad" HeaderText="Actividad" 

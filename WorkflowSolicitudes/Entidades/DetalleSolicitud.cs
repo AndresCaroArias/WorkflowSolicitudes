@@ -28,6 +28,7 @@ namespace WorkflowSolicitudes.Entidades
         private string _strEstado;
         private int _intCodUnidad;
         private string _strDescUnidad;
+        private int _intEtapa;
 
         #endregion
 
@@ -36,7 +37,7 @@ namespace WorkflowSolicitudes.Entidades
         public DetalleSolicitud(int intFolioSolicitudes, int intSecuencia, int intCodTipoSolicitud, int intCodActividad, string strGlosaActividad,
                                 int intCodEstado, string strGlosaEstado, string strRutUsuario, string strnombre, DateTime dtmFechaVencSol,
                                 int intDiasDeRetraso, DateTime DtmFechaRecep, DateTime DtmFechaEjecutaActividad, DateTime DtmFechaResolucion, 
-                                string StrGlosaDetalleSolictud, int intCodUnidad, string strDescUnidad) 
+                                string StrGlosaDetalleSolictud, int intCodUnidad, string strDescUnidad, int intEtapa) 
         {
           //
             this.intFolioSolicitudes      = intFolioSolicitudes;
@@ -56,7 +57,7 @@ namespace WorkflowSolicitudes.Entidades
             this.StrGlosaDetalleSolictud  = StrGlosaDetalleSolictud;
             this.intCodUnidad             = intCodUnidad;
             this.strDescUnidad            = strDescUnidad;
-
+            this.intEtapa                 = intEtapa;
         }
 
 
@@ -201,6 +202,13 @@ namespace WorkflowSolicitudes.Entidades
             get { return _strDescUnidad; }
             set { _strDescUnidad = value; }
         }
+
+        public int intEtapa
+        {
+            get { return _intEtapa; }
+            set { _intEtapa = value; }
+        }  
+            
 
         #endregion
 

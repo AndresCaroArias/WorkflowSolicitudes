@@ -23,7 +23,7 @@ namespace WorkflowSolicitudes
         public static int intCodUnidad { get; set; }
         public static string strDepende { get; set; }
         public static string strAccion { get; set; }
-
+        public static string strEstadoUsuario { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -137,8 +137,9 @@ namespace WorkflowSolicitudes
         protected void grvUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow row = grvUsuarios.SelectedRow;
-            strRutUsuario = Convert.ToString(grvUsuarios.DataKeys[row.RowIndex].Values["strRutUsuario"]);  
+            strRutUsuario = Convert.ToString(grvUsuarios.DataKeys[row.RowIndex].Values["strRutUsuario"]);
             strNombre = Convert.ToString(grvUsuarios.DataKeys[row.RowIndex].Values["strNombre"]);
+            strEstadoUsuario = Convert.ToString(grvUsuarios.DataKeys[row.RowIndex].Values["strEstadoUsuario"]);
             strApellido = Convert.ToString(grvUsuarios.DataKeys[row.RowIndex].Values["strApellido"]);
             strTelefono = Convert.ToString(grvUsuarios.DataKeys[row.RowIndex].Values["strTelefono"]);
             intCodRol = Convert.ToInt32(grvUsuarios.DataKeys[row.RowIndex].Values["intCodRol"]);
@@ -158,6 +159,16 @@ namespace WorkflowSolicitudes
             ddlUsuario.SelectedValue = strDepende;
 
             strAccion = "Actualizar";
+
+            if (strEstadoUsuario.Equals("ACTIVO"))
+            {
+                chkEstado.Checked = true;
+            }
+            else
+            {
+                chkEstado.Checked = false;
+            }
+
 
             }
 

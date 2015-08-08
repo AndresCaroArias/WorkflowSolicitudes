@@ -194,6 +194,7 @@
     <Compile Include="Entidades\TipoSolicitud.cs" />
     <Compile Include="Entidades\Unidades.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Negocio\NegErrores.cs" />
     <Compile Include="Presentacion\MantUnidades.aspx.cs">
       <DependentUpon>MantUnidades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

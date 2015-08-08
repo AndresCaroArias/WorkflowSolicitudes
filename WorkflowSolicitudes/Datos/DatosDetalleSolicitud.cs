@@ -375,6 +375,7 @@ namespace WorkflowSolicitudes.Datos
              string   StrGlosaDetalleSolictud;
              int intCodUnidad;
              string strDescUnidad;
+             int intEtapa;
 
             List<DetalleSolicitud> LstDetalleSolicitud = new List<DetalleSolicitud>();
             string StoredProcedure = "sp_Get_Consulta_ByFoliosolicitud_Detallesolicitud";
@@ -417,7 +418,7 @@ namespace WorkflowSolicitudes.Datos
                             StrGlosaDetalleSolictud = Convert.ToString(dr["GLOSADETALLESOL"] is DBNull ? null : dr["GLOSADETALLESOL"]);
                             intCodUnidad            = (int)dr["CODUNIDAD"];
                             strDescUnidad           = Convert.ToString(dr["DESCUNIDAD"] is DBNull ? null : dr["DESCUNIDAD"]);
-                     
+                            intEtapa                = (int)dr["ETAPA"];                  
 
                             StringBuilder strnombre = new StringBuilder();
 
@@ -443,7 +444,8 @@ namespace WorkflowSolicitudes.Datos
                                                                          dtmFechaResolucion,
                                                                          StrGlosaDetalleSolictud,
                                                                          intCodUnidad,
-                                                                         strDescUnidad
+                                                                         strDescUnidad,
+                                                                         intEtapa
                                                                          ));
 
                         }
@@ -505,6 +507,107 @@ namespace WorkflowSolicitudes.Datos
                 }
             }
             return LstHistorialDetalleSolicitud;
+        }
+
+        public List<DetalleSolicitud> ConsultaHistoriaActividadesResueltas(int folio)
+        {
+             int    intFolioSolicitudes;        
+             int    intSecuencia;        
+             int    intCodTipoSolicitud;        
+             int    intCodActividad;
+             string strGlosaActividad;
+             int    intCodEstado;
+             string strGlosaEstado;
+             string strRutUsuario;
+             string strnombreAux;
+             string strApellidoAux;
+             DateTime dtmFechaVencSol;        
+             int intDiasDeRetraso;
+             DateTime dtmFechaResolucion;
+             DateTime dtmFecharecep;
+             DateTime dtmFechaEjecutaActividad;
+             string   StrGlosaDetalleSolictud;
+             int intCodUnidad;
+             string strDescUnidad;
+			 int intEtapa;
+
+            List<DetalleSolicitud> LstDetalleSolicitud = new List<DetalleSolicitud>();
+            string StoredProcedure = "sp_Get_Consulta_ByFolioHistoria_Detallesolicitud";
+            using (DbConnection con = Conexion.dpf.CreateConnection())
+            {
+                con.ConnectionString = Conexion.constr;
+                using (DbCommand cmd = Conexion.dpf.CreateCommand())
+                {
+                    cmd.Connection = con;
+                    cmd.CommandText = StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    DbParameter param = cmd.CreateParameter();
+                    param.DbType = DbType.Int32;
+                    param.ParameterName = "FOLIOSOLICITUD";
+                    param.Value = folio;
+                    cmd.Parameters.Add(param);
+
+
+                    con.Open();
+                    using (DbDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            intFolioSolicitudes      = (int)dr["FOLIOSOLICITUD"];
+                            intSecuencia             = (int)dr["SECUENCIA"];
+                            intCodTipoSolicitud      = (int)dr["CODTIPOSOLICITUD"];
+                            intCodActividad          = (int)dr["CODACTIVIDAD"];
+                            strGlosaActividad        = (string)dr["DESCRIPCION"];
+                            intCodEstado             = (int)dr["CODESTADO"];
+                            strGlosaEstado           = (string)dr["DESCESTADO"];
+                            strRutUsuario            = Convert.ToString(dr["RUTUSUARIO"] is DBNull ? null : dr["RUTUSUARIO"]);
+                            strnombreAux             = Convert.ToString(dr["NOMBRE"] is DBNull ? null : dr["NOMBRE"]);
+                            strApellidoAux           = Convert.ToString(dr["APELLIDO"] is DBNull ? null : dr["APELLIDO"]);
+                            dtmFechaVencSol          = Convert.ToDateTime(dr["FECHAVENCSOL"] is DBNull ? null : dr["FECHAVENCSOL"]);
+                            intDiasDeRetraso         = (int)dr["DIASATRASO"];
+                            dtmFechaResolucion       = Convert.ToDateTime(dr["FECHARESOLUCION"] is DBNull ? null : dr["FECHARESOLUCION"]);
+                            dtmFecharecep            = Convert.ToDateTime(dr["FECHARECEP"] is DBNull ? null : dr["FECHARECEP"]);
+                            dtmFechaEjecutaActividad = Convert.ToDateTime(dr["FECHAEJECACTIVIDAD"] is DBNull ? null : dr["FECHAEJECACTIVIDAD"]);
+                            StrGlosaDetalleSolictud = Convert.ToString(dr["GLOSADETALLESOL"] is DBNull ? null : dr["GLOSADETALLESOL"]);
+                            intCodUnidad            = (int)dr["CODUNIDAD"];
+                            strDescUnidad           = Convert.ToString(dr["DESCUNIDAD"] is DBNull ? null : dr["DESCUNIDAD"]);
+                            intEtapa = (int)dr["ETAPA"];  
+
+                            StringBuilder strnombre = new StringBuilder();
+
+                            strnombre.Append(strnombreAux);
+                            strnombre.Append(" ");
+                            strnombre.Append(strApellidoAux);
+
+
+                            
+                            LstDetalleSolicitud.Add(new DetalleSolicitud(intFolioSolicitudes,
+                                                                         intSecuencia,
+                                                                         intCodTipoSolicitud,
+                                                                         intCodActividad,
+                                                                         strGlosaActividad,
+                                                                         intCodEstado,
+                                                                         strGlosaEstado,                                                                         
+                                                                         strRutUsuario,
+                                                                         strnombre.ToString(),
+                                                                         dtmFechaVencSol,
+                                                                         intDiasDeRetraso,
+                                                                         dtmFecharecep,                                                                                                                                                  
+                                                                         dtmFechaEjecutaActividad,
+                                                                         dtmFechaResolucion,
+                                                                         StrGlosaDetalleSolictud,
+                                                                         intCodUnidad,
+                                                                         strDescUnidad,
+                                                                         intEtapa
+                                                                         ));
+
+                        }
+                    }
+                }
+            }
+            return LstDetalleSolicitud;
+
         }
           
     }

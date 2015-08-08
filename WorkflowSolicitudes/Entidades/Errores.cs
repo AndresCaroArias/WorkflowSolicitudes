@@ -37,6 +37,17 @@ namespace WorkflowSolicitudes.Entidades
 
         }
 
+        public Errores(string strRutUsuario, string strNombreProcedimiento, string strCodError, string strGlosaError, string strObservacion, string strMetodo)
+        {
+            this.strRutUsuario = strRutUsuario;
+            this.strNombreProcedimiento = strNombreProcedimiento;
+            this.strCodError = strCodError;
+            this.strGlosaError = strGlosaError;
+            this.strObservacion = strObservacion;
+            this.strMetodo = strMetodo;
+
+        }
+
         #endregion
 
         #region Encapsulamiento

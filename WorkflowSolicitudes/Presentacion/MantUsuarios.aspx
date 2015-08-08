@@ -1,26 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MantUsuarios.aspx.cs" Inherits="WorkflowSolicitudes.Formulario_web23" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 
-<link href="../css/alertify.core.css" rel="stylesheet" type="text/css" />
-<link href="../css/alertify.default.css" rel="stylesheet" type="text/css" id="toggleCSS" />
 
-
+    <link href="../css/alertify.core.css" rel="stylesheet" type="text/css" />
+    <link href="../css/alertify.default.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type='text/javascript'>
     function ir() {
         window.open("BuscadorPersonas.aspx", null, "height=600,width=500,status=yes,toolbar=no,menubar=no,location=no,titlebar=no, resizable = off");
     } 
-
-    
-
 </script>
-
-
-      
-
 <div class="container">
 
 <div class ="row-fluid">
@@ -85,16 +77,23 @@
 
 <div class ="row-fluid">
 <div class ="span12">
-    <asp:GridView ID="grvUsuarios" runat="server"  
-        AutoGenerateColumns="False" AllowPaging="True"
-        BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
-        CellPadding="5" ForeColor="Black" GridLines="Vertical"  
+    <asp:GridView ID="grvUsuarios" 
+        runat="server"  
+        AutoGenerateColumns="False" 
+        AllowPaging="True"
+        BackColor="White" 
+        BorderColor="#999999" 
+        BorderStyle="Solid" 
+        BorderWidth="1px" 
+        CellPadding="5" 
+        ForeColor="Black" 
+        GridLines="Vertical"  
         onpageindexchanging="grvUsuarios_PageIndexChanging" 
         onrowcancelingedit="grvUsuarios_RowCancelingEdit"
         onrowdeleting="grvUsuarios_RowDeleting" 
         onrowediting="grvUsuarios_RowEditing"
         onrowupdating="grvUsuarios_RowUpdating" 
-        DataKeyNames="strRutUsuario,strNombre,strApellido,strTelefono,strEmailUsuario,strPassword,intCodRol,intCodUnidad,strDepende" 
+        DataKeyNames="strRutUsuario,strNombre,strApellido,strTelefono,strEmailUsuario,strPassword,intCodRol,intCodUnidad,strDepende,strEstadoUsuario" 
         onselectedindexchanged="grvUsuarios_SelectedIndexChanged" 
         onrowcommand="grvUsuarios_RowCommand"
         emptydatatext="No existen datos para la consulta realizada" 
@@ -275,7 +274,8 @@
 
 <div class ="row-fluid">
 
-<div class ="span12"> <asp:ImageButton ID="btnGrabarUsuario" runat="server" ImageUrl="~/imagenes/boton.guardar.gif" onclick="btnGrabarUsuario_Click" /> &nbsp;
+<div class ="span12"> 
+    <asp:ImageButton ID="btnGrabarUsuario" runat="server" ImageUrl="~/imagenes/boton.guardar.gif" onclick="btnGrabarUsuario_Click" /> &nbsp;
     <asp:ImageButton ID="BtnNuevoUsuario" runat="server" Height="23px" 
         ImageUrl="~/imagenes/nuevousuario.jpg" onclick="BtnNuevoUsuario_Click" 
         Width="24px" />
@@ -295,5 +295,5 @@
 
 </div>
    
-    </div>
+ 
 </asp:Content>

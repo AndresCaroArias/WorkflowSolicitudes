@@ -214,11 +214,11 @@ namespace WorkflowSolicitudes.Presentacion
                 
         }
 
-        private void mostrar_Historial(int Folio)
+        private void mostrar_Historial(int intFolioSolicitud)
         {
             List<WorkflowSolicitudes.Entidades.DetalleSolicitud> LstHistory = new List<WorkflowSolicitudes.Entidades.DetalleSolicitud>();
             NegDetalleSolicitud NegDetSol = new NegDetalleSolicitud();
-            LstHistory = NegDetSol.ObtenerDetalleSolicitud(Folio);
+            LstHistory = NegDetSol.HistoriadelaSolicitud(intFolioSolicitud);
             grvMostrarHistorial.DataSource = LstHistory; 
             grvMostrarHistorial.DataBind();
 
