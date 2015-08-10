@@ -12,10 +12,13 @@ namespace WorkflowSolicitudes
     {
 
         public static String StrPrivilegio = "MantPrivilegios.aspx";
+        public static string gblAccion { get; set; }
         public static String StrRutUsuario { get; set; }
         public static int intCodRoUser { get; set; }
-
-
+        public static int intCodPrivilegios { get; set; }
+        public static String strDescPrivilegios { get; set; }
+        public static String strNomPrivilegios { get; set; }
+        public static String strEstadoPrivilegios { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
            
@@ -32,14 +35,7 @@ namespace WorkflowSolicitudes
                                        
                     return;
                 }
-
-
-               
-
-
                 LoadGrid();
-
-                
             }
 
         }
@@ -95,39 +91,59 @@ namespace WorkflowSolicitudes
 
         protected void grvPrivilegios_SelectedIndexChanged(object sender, EventArgs e)
         {
-        
+            GridViewRow row = grvPrivilegios.SelectedRow;
+            intCodPrivilegios   = Convert.ToInt32(grvPrivilegios.DataKeys[row.RowIndex].Values["intCodPrivilegios"]);
+            strDescPrivilegios = Convert.ToString(grvPrivilegios.DataKeys[row.RowIndex].Values["strDescPrivilegios"]);
+            strNomPrivilegios = Convert.ToString(grvPrivilegios.DataKeys[row.RowIndex].Values["strNomPrivilegios"]);
+            strEstadoPrivilegios = Convert.ToString(grvPrivilegios.DataKeys[row.RowIndex].Values["strEstadoPrivilegios"]);
+            
+
+            txtDescripcionPrivilegios.Text = strDescPrivilegios;
+            TxtNombre.Text = strNomPrivilegios;
+
+            if (strEstadoPrivilegios.Equals("ACTIVO"))
+            {
+                chkEstado.Checked = true;
+            }
+            else
+            {
+                chkEstado.Checked = false;
+            }
+
+            gblAccion = "Actualizar";
+            
         }
 
         protected void grvPrivilegios_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int id = (int)grvPrivilegios.DataKeys[e.RowIndex].Values[0];
-            GridViewRow Fila = grvPrivilegios.Rows[e.RowIndex];
-            int intEstadoPrivilegios;
+            //int id = (int)grvPrivilegios.DataKeys[e.RowIndex].Values[0];
+            //GridViewRow Fila = grvPrivilegios.Rows[e.RowIndex];
+            //int intEstadoPrivilegios;
 
-            System.Web.UI.WebControls.TextBox EditDescripcionPrivilegios = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescPrivilegios");
-            string descripcion = EditDescripcionPrivilegios.Text;
+            //System.Web.UI.WebControls.TextBox EditDescripcionPrivilegios = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescPrivilegios");
+            //string descripcion = EditDescripcionPrivilegios.Text;
 
-            System.Web.UI.WebControls.TextBox EditNombrePrivi = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditNomPrivilegios");
-            string nombre = EditNombrePrivi.Text;
+            //System.Web.UI.WebControls.TextBox EditNombrePrivi = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditNomPrivilegios");
+            //string nombre = EditNombrePrivi.Text;
 
-            System.Web.UI.WebControls.CheckBox EditEstadoPrvilegio = (System.Web.UI.WebControls.CheckBox)Fila.FindControl("chkEditEstadoPrvilegio");
-            //CheckBox estado = EditEstadoPrvilegio.Checked;
+            //System.Web.UI.WebControls.CheckBox EditEstadoPrvilegio = (System.Web.UI.WebControls.CheckBox)Fila.FindControl("chkEditEstadoPrvilegio");
+            ////CheckBox estado = EditEstadoPrvilegio.Checked;
 
 
 
-            if (EditEstadoPrvilegio.Checked)
-            {
-                intEstadoPrivilegios = 1;
-            }
-            else
-            {
-                intEstadoPrivilegios = 0;
-            }
+            //if (EditEstadoPrvilegio.Checked)
+            //{
+            //    intEstadoPrivilegios = 1;
+            //}
+            //else
+            //{
+            //    intEstadoPrivilegios = 0;
+            //}
 
-            (new NegPrivilegios()).ActualizarPrivilegios(id, descripcion, nombre, intEstadoPrivilegios);
+            //(new NegPrivilegios()).ActualizarPrivilegios(id, descripcion, nombre, intEstadoPrivilegios);
 
-            grvPrivilegios.EditIndex = -1;
-            LoadGrid();
+            //grvPrivilegios.EditIndex = -1;
+            //LoadGrid();
         
         }
 
@@ -142,25 +158,24 @@ namespace WorkflowSolicitudes
         {
             int intEstadoPrivilegios;
             lblMensaje.Text = String.Empty;
-
+            NegPrivilegios NegocioPrivi = new  NegPrivilegios ();
+            
             if (txtDescripcionPrivilegios.Text.Equals(String.Empty))
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Ingrese la descripción del privilegios');</script>");
-                
-               return;
+                return;
             }
 
             if (TxtNombre.Text.Equals(String.Empty))
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Ingrese el nombre del privilegios');</script>");
-                
                 return;
             }
 
 
              if (txtDescripcionPrivilegios.Equals(String.Empty))
             {
-
+              ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Debe ingresar la descripción del privilegio');</script>");
                 return;
             }
 
@@ -172,6 +187,7 @@ namespace WorkflowSolicitudes
              {
                  intEstadoPrivilegios = 0;
              }
+
              NegPrivilegios NegocioPrivilegios = new NegPrivilegios();
 
              int intExistePrivi;
@@ -187,10 +203,7 @@ namespace WorkflowSolicitudes
                  return;
              }
 
-             //NegPrivilegios NegocioPrivilegios = new NegPrivilegios();
-
              int intExisteNomPrivi;
-
              intExisteNomPrivi = NegocioPrivilegios.select_ExistePrivi_NomPrivi(TxtNombre.Text);
 
 
@@ -202,26 +215,16 @@ namespace WorkflowSolicitudes
                  return;
              }
 
-
-            NegPrivilegios NegocioPrivi = new  NegPrivilegios ();
-            NegocioPrivi.AltaPrivilegios(txtDescripcionPrivilegios.Text, TxtNombre.Text, intEstadoPrivilegios);
-
-            {
-
-                LoadGrid();
+             if (gblAccion.Equals("Actualizar"))
+             {
+                 NegocioPrivi.ActualizarPrivilegios(intCodPrivilegios, txtDescripcionPrivilegios.Text, TxtNombre.Text, intEstadoPrivilegios);
+             }
+             else
+             {
+                 NegocioPrivi.AltaPrivilegios(txtDescripcionPrivilegios.Text, TxtNombre.Text, intEstadoPrivilegios);
+             }
+            LoadGrid();
             }
-
         }
-
-        protected void chkEstadoPrvilegio_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-        
-
-       
-
-
         
     }
-}

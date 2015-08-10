@@ -32,6 +32,7 @@ namespace WorkflowSolicitudes.Datos
         public  static int ejecutaNonQuery(string StoredProcedure, List<DbParameter> parametros)
         {
             int Id = 0;
+            string strGlosaError="FALTA LOS PARAMETROS DEL ERROR";
             try
             {
                 using (DbConnection con = dpf.CreateConnection())
@@ -46,16 +47,18 @@ namespace WorkflowSolicitudes.Datos
 
                         foreach (DbParameter param in parametros)
                             cmd.Parameters.Add(param);
+                           
 
                         con.Open();
                         Id = cmd.ExecuteNonQuery();
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                 
+                DatosErrores InsertarErrores = new DatosErrores();
+                InsertarErrores.InsertarError("1-9",StoredProcedure,ex.Message,ex.Source,strGlosaError,"METODO");
+                
                 throw;
             }
             finally

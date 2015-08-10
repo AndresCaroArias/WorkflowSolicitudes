@@ -11,9 +11,6 @@ namespace WorkflowSolicitudes.Datos
 {
     public class DatosPrivilegios
     {
-       
-
-       
         public List<Privilegios> select_All_Privilegios()
         {
             List<Privilegios> LstPrivilegios = new List<Privilegios>();
@@ -36,7 +33,7 @@ namespace WorkflowSolicitudes.Datos
                                 new Privilegios((int)dr["CODPRIVILEGIOS"],
                                     (string)dr["DESCPRIVILEGIOS"],
                                     (string)dr["NOMPRIVILEGIOS"],
-                                    (int)dr["ESTADOPRIVILEGIOS"]));
+                                    (string)dr["ESTADOPRIVILEGIOS"]));
                         }
                     }
                 }

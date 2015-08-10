@@ -45,20 +45,24 @@
 
 <div class ="row-fluid">
 <div class ="span12">
-    <asp:GridView ID="grvPrivilegios" runat="server" AutoGenerateColumns="False" 
+    <asp:GridView 
+       ID="grvPrivilegios" 
+       runat="server" 
+       AutoGenerateColumns="False" 
        AllowPaging="True"
        BackColor="White" 
        BorderColor="#999999" 
        BorderStyle="Solid" 
        BorderWidth="1px" 
-       CellPadding="5" ForeColor="Black" GridLines="Vertical"  
+       CellPadding="5" 
+       ForeColor="Black" 
+       GridLines="Vertical"  
        onpageindexchanging="grvPrivilegios_PageIndexChanging" 
        onrowcancelingedit="grvPrivilegios_RowCancelingEdit" 
        onrowdeleting="grvPrivilegios_RowDeleting" 
        onrowediting="grvPrivilegios_RowEditing" 
        onrowupdating="grvPrivilegios_RowUpdating" 
-       DataKeyNames="intCodPrivilegios" 
-       PageSize="10"
+       DataKeyNames="intCodPrivilegios,strDescPrivilegios,strNomPrivilegios,strEstadoPrivilegios"
        onselectedindexchanged="grvPrivilegios_SelectedIndexChanged"
        emptydatatext="No existen datos para la consulta realizada" 
         Font-Bold="False">
@@ -66,14 +70,11 @@
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
 
        <AlternatingRowStyle BackColor="#CCCCCC" />
-        <Columns>
-                <asp:CommandField ButtonType="Image" EditImageUrl="~/imagenes/editar.gif" 
-                    ShowEditButton="True" />
-                <asp:CommandField ButtonType="Image" DeleteImageUrl="~/imagenes/eliminar.gif" 
-                    ShowDeleteButton="True" />
+       <Columns>
+            <asp:CommandField ButtonType="Image" SelectImageUrl="~/imagenes/editar.gif" 
+                ShowSelectButton="True" ShowCancelButton="False" />
 
-
-            <asp:TemplateField HeaderText="Codigo">
+            <asp:TemplateField HeaderText="Codigo" Visible="False">
 
             <ItemTemplate>
             <asp:Label ID="lblCodPrivilegios" runat="server" Text='<%#Bind("intCodPrivilegios") %>'/>
@@ -106,13 +107,13 @@
                         
                 <EditItemTemplate>
                
-                    <asp:CheckBox ID="chkEditEstadoPrvilegio" runat="server" EnableViewState="False" Text='<%# Bind("intEstadoPrivilegios") %>' />
+                    <asp:CheckBox ID="chkEditEstadoPrvilegio" runat="server" EnableViewState="False" Text='<%# Bind("strEstadoPrivilegios") %>' />
                
                 </EditItemTemplate>
 
               
                 <ItemTemplate>
-                <asp:Label ID="lblEstadoPrivilegios" runat="server" Text='<%# Bind("intEstadoPrivilegios") %>'></asp:Label>
+                <asp:Label ID="lblEstadoPrivilegios" runat="server" Text='<%# Bind("strEstadoPrivilegios") %>'></asp:Label>
                 </ItemTemplate>
 
             </asp:TemplateField>

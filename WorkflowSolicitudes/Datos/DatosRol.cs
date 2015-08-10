@@ -106,7 +106,7 @@ namespace WorkflowSolicitudes.Datos
                             LstRol.Add(
                                 new Rol((int)dr["CODROL"],
                                     (string)dr["DESCRIPCION"],
-                                     (int)dr["ESTADOROL"]
+                                     (string)dr["ESTADOROL"]
                                     ));
                         }
                     }

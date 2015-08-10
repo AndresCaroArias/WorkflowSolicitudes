@@ -13,6 +13,8 @@ namespace WorkflowSolicitudes
         public static String StrPrivilegio = "MantRol.aspx";
         public static String StrRutUsuario { get; set; }
         public static int intCodRoUser { get; set; }
+        public static String strDescripcion { get; set; }
+        public static string strEstadorol { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -84,18 +86,18 @@ namespace WorkflowSolicitudes
 
         protected void grvRol_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int id = (int)grvRol.DataKeys[e.RowIndex].Values[0];
-            GridViewRow Fila = grvRol.Rows[e.RowIndex];
+            //int id = (int)grvRol.DataKeys[e.RowIndex].Values[0];
+            //GridViewRow Fila = grvRol.Rows[e.RowIndex];
 
 
-            System.Web.UI.WebControls.TextBox EditDescripcionRol = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescripcionRol");
-            string descripcion = EditDescripcionRol.Text;
+            //System.Web.UI.WebControls.TextBox EditDescripcionRol = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescripcionRol");
+            //string descripcion = EditDescripcionRol.Text;
 
           
-            (new NegRol()).ActualizarRol(id, descripcion);
+            //(new NegRol()).ActualizarRol(id, descripcion);
 
-            grvRol.EditIndex = -1;
-            LoadGrid();
+            //grvRol.EditIndex = -1;
+            //LoadGrid();
         }
 
         protected void grvRol_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -107,7 +109,19 @@ namespace WorkflowSolicitudes
 
         protected void grvRol_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow row = grvRol.SelectedRow;
+            strDescripcion = Convert.ToString(grvRol.DataKeys[row.RowIndex].Values["strDescripcion"]);
+            strEstadorol = Convert.ToString(grvRol.DataKeys[row.RowIndex].Values["strEstadorol"]);
 
+            txtDescripcionRol.Text = strDescripcion;
+            if (strEstadorol.Equals("ACTIVO"))
+            {
+                chkEstadoRol.Checked = true;
+            }
+            else
+            {
+                chkEstadoRol.Checked = false;
+            }
         }
 
       

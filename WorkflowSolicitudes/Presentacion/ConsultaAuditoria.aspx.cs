@@ -206,7 +206,8 @@ namespace WorkflowSolicitudes.Presentacion
         protected void grvConsultaAuditoria_PageIndexChanging1(object sender, GridViewPageEventArgs e)
         {
             grvConsultaAuditoria.PageIndex = e.NewPageIndex;
-        
+            BindData();
+          
         
 }
 

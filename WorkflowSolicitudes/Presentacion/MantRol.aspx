@@ -45,30 +45,39 @@
 </div>
 
 <div class ="row-fluid">
-<div class ="span12"><asp:GridView ID="grvRol" runat="server"  
-        AutoGenerateColumns="False" AllowPaging="True"
-        BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
-        CellPadding="5" ForeColor="Black" GridLines="Vertical"  
+<div class ="span12"><asp:GridView 
+        ID="grvRol" 
+        runat="server"  
+        AutoGenerateColumns="False" 
+        AllowPaging="True"
+        BackColor="White" 
+        BorderColor="#999999" 
+        BorderStyle="Solid" 
+        BorderWidth="1px" 
+        CellPadding="5" 
+        ForeColor="Black" 
+        GridLines="Vertical"  
         onpageindexchanging="grvRol_PageIndexChanging" 
         onrowcancelingedit="grvRol_RowCancelingEdit"
         onrowdeleting="grvRol_RowDeleting" 
         onrowediting="grvRol_RowEditing"
         onrowupdating="grvRol_RowUpdating" 
-        DataKeyNames="intCodRol" 
-        onselectedindexchanged="grvRol_SelectedIndexChanged" PageSize="5"
+        DataKeyNames="intCodRol,strDescripcion, strEstadorol" 
+        onselectedindexchanged="grvRol_SelectedIndexChanged" 
+        PageSize="5"
         emptydatatext="No existen datos para la consulta realizada" 
         Font-Bold="False">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-                <asp:CommandField ButtonType="Image" EditImageUrl="~/imagenes/editar.gif" 
-                    ShowEditButton="True" />
-                <asp:CommandField ButtonType="Image" DeleteImageUrl="~/imagenes/eliminar.gif" 
-                    ShowDeleteButton="True" />
+               
+                
+                 <asp:CommandField ButtonType="Image" SelectImageUrl="~/imagenes/editar.gif" 
+                ShowSelectButton="True" ShowCancelButton="False" />
 
 
-            <asp:TemplateField HeaderText="Codigo">
+            <asp:TemplateField HeaderText="Codigo" Visible="False">
 
             <ItemTemplate>
             <asp:Label ID="lblCodRol" runat="server" Text='<%#Bind("intCodRol") %>'/>
@@ -89,11 +98,12 @@
             <asp:TemplateField HeaderText="Estado">
                         
             <ItemTemplate>
-                <asp:LinkButton ID="LinkButton1" runat="server">Activo</asp:LinkButton>
+                 <asp:Label ID="lblDEstado" runat="server" Text='<%#Bind("strEstadorol") %>'/>
             </ItemTemplate>
+
                         
             <EditItemTemplate>
-            <asp:TextBox ID="txtEditEstadoRol" runat="server" Text='<%#Bind("intEstadoRol") %>'/>
+            <asp:TextBox ID="txtEditEstadoRol" runat="server" Text='<%#Bind("strEstadorol") %>'/>
             </EditItemTemplate>
             </asp:TemplateField>
 

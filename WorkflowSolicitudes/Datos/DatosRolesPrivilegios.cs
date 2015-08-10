@@ -12,9 +12,6 @@ namespace WorkflowSolicitudes.Datos
     public class DatosRolesPrivilegios
     {
         
-
-        
-
         public List<RolesPrivilegios> select_All_RolesPrivilegios()
         {
             List<RolesPrivilegios> LstRolesPrivilegios = new List<RolesPrivilegios>();

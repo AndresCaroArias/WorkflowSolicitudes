@@ -13,14 +13,11 @@ namespace WorkflowSolicitudes.Entidades
         private string _strDescPrivilegios;
         private string _strNomPrivilegios;
         private int _intEstadoPrivilegios;
-                
-       
+        private string _strEstadoPrivilegios;
+
         #endregion
 
         #region Cosntructor
-
-        
-        
 
         public Privilegios() { }
 
@@ -37,13 +34,20 @@ namespace WorkflowSolicitudes.Entidades
             
         //}
 
+        public Privilegios(int intCodPrivilegios, string strDescPrivilegios, string strNomPrivilegios, string strEstadoPrivilegios)
+        {
+            this.intCodPrivilegios = intCodPrivilegios;
+            this.strDescPrivilegios = strDescPrivilegios;
+            this.strNomPrivilegios = strNomPrivilegios;
+            this.strEstadoPrivilegios = strEstadoPrivilegios;
+        }
+
         public Privilegios(int intCodPrivilegios, string strDescPrivilegios, string strNomPrivilegios, int intEstadoPrivilegios)
         {
             this.intCodPrivilegios = intCodPrivilegios;
             this.strDescPrivilegios = strDescPrivilegios;
             this.strNomPrivilegios = strNomPrivilegios;
             this.intEstadoPrivilegios = intEstadoPrivilegios;
-
         }
 
         public Privilegios(int intCodPrivilegios, string strDescPrivilegios, string strNomPrivilegios)
@@ -104,7 +108,13 @@ namespace WorkflowSolicitudes.Entidades
         {
             get { return _intEstadoPrivilegios; }
             set { _intEstadoPrivilegios = value; }
-        }  
+        }
+
+        public string strEstadoPrivilegios
+        {
+            get { return _strEstadoPrivilegios; }
+            set { _strEstadoPrivilegios = value; }
+        }
         #endregion
 
     }

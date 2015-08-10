@@ -100,7 +100,7 @@
     <asp:GridView ID="grvConsultaAuditoria" runat="server" AutoGenerateColumns="False" 
             BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
             CellPadding="10" ForeColor="Black" GridLines="Vertical" Height="122px" 
-            Width="1051px" 
+            Width="1093px" 
             onselectedindexchanged="grvConsultaAuditoria_SelectedIndexChanged"
             emptydatatext="No existen datos para la consulta realizada" 
         Font-Bold="False" 

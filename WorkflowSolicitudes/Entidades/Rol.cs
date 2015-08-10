@@ -13,19 +13,27 @@ namespace WorkflowSolicitudes.Entidades
         private string _strDescripcion;        
         private string _strRutUsuario;
         private int _intEstadoRol;
-
-       
+        private string _strEstadorol;
 
         #endregion
 
         #region Cosntructor
         public Rol() { }
-        public Rol(int intCodRol, string strDescripcion, string strRutUsuario) 
+
+        public Rol(int intCodRol, string strDescripcion, string strEstadorol) 
         {
             this.intCodRol = intCodRol;
             this.strDescripcion = strDescripcion;
-            this.strRutUsuario = strRutUsuario;
+            this.strEstadorol = strEstadorol;
+
         }
+
+        //public Rol(int intCodRol, string strDescripcion, string strRutUsuario) 
+        //{
+        //    this.intCodRol = intCodRol;
+        //    this.strDescripcion = strDescripcion;
+        //    this.strRutUsuario = strRutUsuario;
+        //}
         public Rol(int intCodRol, string strDescripcion, int intEstadoRol)
         {
             this.intCodRol = intCodRol;
@@ -71,6 +79,12 @@ namespace WorkflowSolicitudes.Entidades
         {
             get { return _intEstadoRol; }
             set { _intEstadoRol = value; }
+        }
+
+        public string strEstadorol
+        {
+            get { return _strEstadorol; }
+            set { _strEstadorol = value; }
         }
 
         #endregion
