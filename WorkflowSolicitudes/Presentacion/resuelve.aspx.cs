@@ -250,7 +250,6 @@ namespace WorkflowSolicitudes.Presentacion
             NegDetalleSolicitud ResuelveActividad  = new NegDetalleSolicitud();
            
 
-
             if (!strSecuenciaNo.Equals(String.Empty))
             {
                 if ((!RbtSI.Checked) && (!RbtNO.Checked)) 
@@ -266,7 +265,6 @@ namespace WorkflowSolicitudes.Presentacion
                return;
             }
             
-
             
             if (RbtSI.Checked)
             {
@@ -300,7 +298,6 @@ namespace WorkflowSolicitudes.Presentacion
 
             if (strSecuenciaNo.Equals("0") && (strSecuenciaSi.Equals("0")))
             {
-                // FALTA EL ALGORITMO PARA DETERMINAR QUE SI FUE ACEPTADA O REHZADA LA SOLICITUD AL TERMINAR EL PROCESO
                 intExisteUnaAprobada = ResuelveActividad.ExisteAlmenosUnaAprobacion(intFolioSolicitud);
                 if (intExisteUnaAprobada.Equals(1) )
                 {

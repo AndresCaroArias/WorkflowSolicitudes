@@ -28,8 +28,6 @@ namespace WorkflowSolicitudes.Presentacion
             
             if (!Page.IsPostBack)
                 lee_grilla(intCodUnidad);
-            
-        
         }
         
 

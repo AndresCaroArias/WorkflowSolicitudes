@@ -17,6 +17,7 @@ namespace WorkflowSolicitudes.Entidades
         private DateTime _dtmFechaResolucion;
         private int      _intDiasAtraso;
         private string   _strDescEstado;
+        private int      _intEtapa;
 
         
         #endregion  
@@ -24,7 +25,7 @@ namespace WorkflowSolicitudes.Entidades
         #region Cosntructor
         public Tareas() { }
         public Tareas(int IntFolioSolicitud, string StrDesSolicitud, DateTime DtmFechaSolicitud, int IntSecuencia, string StrDesActividad,
-                      DateTime DtmFechaVencimiento, DateTime DtmFechaResolucion, int IntDiasAtraso, string StrDescEstado)
+                      DateTime DtmFechaVencimiento, DateTime DtmFechaResolucion, int IntDiasAtraso, string StrDescEstado, int intEtapa)
         
         {
             this.IntFolioSolicitud   = IntFolioSolicitud;
@@ -36,6 +37,7 @@ namespace WorkflowSolicitudes.Entidades
             this.DtmFechaResolucion  = DtmFechaResolucion;
             this.IntDiasAtraso       = IntDiasAtraso;
             this.StrDescEstado       = StrDescEstado;
+            this._intEtapa = intEtapa;
 
         }
         #endregion
@@ -92,6 +94,13 @@ namespace WorkflowSolicitudes.Entidades
             get { return _strDescEstado; }
             set { _strDescEstado = value; }
         }
+
+        public int intEtapas
+        {
+            get { return _intEtapa; }
+            set { _intEtapa = value; }
+        }
+
         #endregion
     }
 }

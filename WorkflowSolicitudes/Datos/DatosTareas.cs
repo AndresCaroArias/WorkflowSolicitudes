@@ -27,6 +27,7 @@ namespace WorkflowSolicitudes.Datos
             DateTime DtmFechaResolucion;
             int      IntDiasAtraso;
             string   StrDescEstado;
+            int      intEtapa;
             
             
             List<Tareas> LstTareas = new List<Tareas>();
@@ -59,9 +60,10 @@ namespace WorkflowSolicitudes.Datos
                             IntSecuencia        = (int)dr["SECUENCIA"];
                             StrDesActividad     = (string)dr["DESCRIPCION"];
                             DtmFechaVencimiento = Convert.ToDateTime(dr["FECHAVENCSOL"] is DBNull ? null : dr["FECHAVENCSOL"]); 
-                            DtmFechaResolucion = Convert.ToDateTime(dr["FECHARESOLUCION"] is DBNull ? null : dr["FECHARESOLUCION"]); 
+                            DtmFechaResolucion  = Convert.ToDateTime(dr["FECHARESOLUCION"] is DBNull ? null : dr["FECHARESOLUCION"]); 
                             IntDiasAtraso       = (int)dr["DIASATRASO"];
                             StrDescEstado       = (string)dr["DESCESTADO"];
+                            intEtapa            = (int)dr["ETAPA"];
 
                             LstTareas.Add(new Tareas(IntFolioSolicitud,
                                                      StrDesSolicitud,
@@ -71,7 +73,9 @@ namespace WorkflowSolicitudes.Datos
                                                      DtmFechaVencimiento,
                                                      DtmFechaResolucion,
                                                      IntDiasAtraso,
-                                                     StrDescEstado));
+                                                     StrDescEstado,
+                                                     intEtapa
+                                                     ));
 
                         }
                     }
@@ -95,7 +99,7 @@ namespace WorkflowSolicitudes.Datos
             DateTime DtmFechaResolucion;
             int IntDiasAtraso;
             string StrDescEstado;
-
+            int intEtapa;
 
             List<Tareas> LstTareas = new List<Tareas>();
             string StoredProcedure = "sp_get_tareasPendientesByCodUnidad";
@@ -130,6 +134,7 @@ namespace WorkflowSolicitudes.Datos
                             DtmFechaResolucion  = Convert.ToDateTime(dr["FECHARESOLUCION"] is DBNull ? null : dr["FECHARESOLUCION"]);
                             IntDiasAtraso       = (int)dr["DIASATRASO"];
                             StrDescEstado       = (string)dr["DESCESTADO"];
+                            intEtapa            = (int)dr["ETAPA"];
 
                             LstTareas.Add(new Tareas(IntFolioSolicitud,
                                                      StrDesSolicitud,
@@ -139,7 +144,9 @@ namespace WorkflowSolicitudes.Datos
                                                      DtmFechaVencimiento,
                                                      DtmFechaResolucion,
                                                      IntDiasAtraso,
-                                                     StrDescEstado));
+                                                     StrDescEstado,
+                                                     intEtapa
+                                                     ));
 
                         }
                     }
