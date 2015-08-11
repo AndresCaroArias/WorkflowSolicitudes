@@ -12,7 +12,9 @@ namespace WorkflowSolicitudes.Entidades
         private int _intCodRol;
         private int _intEstadoRolPrivi;
         private string _strDescPrivilegios;       
-        private string _strDescripcion;        
+        private string _strDescripcion;
+        private string _strEstadoRolPrivi;
+
 
         #endregion
 
@@ -28,6 +30,16 @@ namespace WorkflowSolicitudes.Entidades
         
     }
 
+        public RolesPrivilegios(int intCodPrivilegios, int intCodRol, int intEstadoRolPrivi, string strDescPrivilegios, string strDescripcion, string strEstadoRolPrivi)
+        {
+            this.intCodPrivilegios = intCodPrivilegios;
+            this.intCodRol = intCodRol;
+            this.intEstadoRolPrivi = intEstadoRolPrivi;
+            this.strDescPrivilegios = strDescPrivilegios;
+            this.strDescripcion = strDescripcion;
+            this.strEstadoRolPrivi = strEstadoRolPrivi;
+        }
+
         public RolesPrivilegios(int intCodPrivilegios, int intCodRol, int intEstadoRolPrivi, string strDescPrivilegios, string strDescripcion)
         {
             this.intCodPrivilegios = intCodPrivilegios;
@@ -35,8 +47,6 @@ namespace WorkflowSolicitudes.Entidades
             this.intEstadoRolPrivi = intEstadoRolPrivi;
             this.strDescPrivilegios = strDescPrivilegios;
             this.strDescripcion = strDescripcion;
-          
-
         }
         
 
@@ -73,8 +83,14 @@ namespace WorkflowSolicitudes.Entidades
         {
             get { return _strDescripcion; }
             set { _strDescripcion = value; }
-        } 
+        }
 
+
+        public string strEstadoRolPrivi
+        {
+            get { return _strEstadoRolPrivi; }
+            set { _strEstadoRolPrivi = value; }
+        }
 
         #endregion
     }

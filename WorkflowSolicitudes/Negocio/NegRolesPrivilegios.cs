@@ -33,5 +33,17 @@ namespace WorkflowSolicitudes.Negocio
             DatosRol ExiRolPri = new DatosRol();
             return ExiRolPri.ExisteRol_RolesPrivilegios(intCodRol);
         }
+
+        public int ExisteUnRolyPrivilegio(int intCodRol, int intCodPrivilegio)
+        {
+            DatosRolesPrivilegios ExiRolPri = new DatosRolesPrivilegios();
+            return ExiRolPri.ExisteElRolyPrivilegio(intCodRol, intCodPrivilegio);
+        }
+
+        public List<RolesPrivilegios> ConsultaRolByRolesPrivi(int intCodRol)
+        {
+            DatosRolesPrivilegios ConsultaRolByRolesPri = new DatosRolesPrivilegios();
+            return ConsultaRolByRolesPri.select_All_E_Rol_ByRolesPrivilegios(intCodRol);
+        }
     }
 }

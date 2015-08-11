@@ -82,7 +82,7 @@ namespace WorkflowSolicitudes.Presentacion
                 NegDatellSolicitud.ActualizaFechaTomaActividad(intFolioSolicitud, intSecuencia, StrRutResponsable);
 
                 NegAuditoria InsertarLog = new NegAuditoria();
-                InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "ACCEDE A RESOLVER ACTIVIDAD", "ACTIVIDAD A RESOLVER ES " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio);
+                InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "ACCEDE A RESOLVER ACTIVIDAD", "ACTIVIDAD A RESOLVER ES " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio.Text);
                 
                 NegFlujoSolicitud DatosDelFlujoActividadActual = new NegFlujoSolicitud();  
                 LstFlujoSolicitud = NegFlujoSolicitud.SelectDatoActividad(intCodTipoSolicitud, intSecuencia);

@@ -104,7 +104,6 @@ namespace WorkflowSolicitudes.Presentacion
                 if (alumno.StrJornada.Equals("D")) 
                    {
                        LblJornada.Text = "DIURNA";
-                
                   }
 
                 if (alumno.StrJornada.Equals("V"))

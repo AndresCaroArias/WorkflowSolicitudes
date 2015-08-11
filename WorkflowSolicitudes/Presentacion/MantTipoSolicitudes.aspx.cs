@@ -38,7 +38,6 @@ namespace WorkflowSolicitudes
                 if (ExistePrivilegio.Equals(false))
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR : Usted no tiene acceso a esta opción');</script>");
-                    
                     return;
                 }
 

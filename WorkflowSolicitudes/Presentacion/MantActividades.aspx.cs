@@ -76,7 +76,6 @@ namespace WorkflowSolicitudes
             if (txtDuracion.Text == "")
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Ingrese la Duración');</script>");
- 
                 return;
             }
 
@@ -105,12 +104,7 @@ namespace WorkflowSolicitudes
                         ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se ingreso correctamente');</script>");
                     }
 
-                    //if (gblAccion.Equals("Actualizar"))
-                    //{
-                    //    //(new NegTipoSolicitud()).ActualizarTipoSolicitud(intCodTipoSolicitud, txtDescripcionTS.Text, intEstadoSolicitud, DateTime.Parse(txtFechaInicio.Text), DateTime.Parse(txtFechaFin.Text), int.Parse(txtCantidadSol.Text), ddlOrigenSolicitud.Text, int.Parse(txtCantMaxDoc.Text));
-
-                    //}
-
+     
                     grvActividad.EditIndex = -1;
                     LoadGrid();
                     //ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se actualizó correctamente');</script>");
@@ -164,6 +158,8 @@ namespace WorkflowSolicitudes
 
         protected void grvActividad_SelectedIndexChanged(object sender, EventArgs e)
         {
+            NegActividad NegocioActividad = new NegActividad();
+
             GridViewRow row = grvActividad.SelectedRow;
             strDescripActividad = Convert.ToString(grvActividad.DataKeys[row.RowIndex].Values["strDescripActividad"]);
             intDuracion = Convert.ToInt32(grvActividad.DataKeys[row.RowIndex].Values["intDuracion"]);
@@ -180,6 +176,14 @@ namespace WorkflowSolicitudes
             else
             {
                 chkEstadoActividad.Checked = false;
+            }
+
+            int ExisteActividad = NegocioActividad.ExisteActividadDetalleSolicitud(intCodActividad);
+
+            if (ExisteActividad.Equals(1))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: No se puede Actualizar esta Actividad, se encuentra en ejecución');</script>");
+                return;
             }
 
             gblAccion = "Actualizar";

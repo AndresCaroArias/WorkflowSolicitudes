@@ -45,7 +45,8 @@
 </div>
 
 <div class ="row-fluid">
-<div class ="span12"><asp:GridView 
+<div class ="span12">
+    <asp:GridView 
         ID="grvRol" 
         runat="server"  
         AutoGenerateColumns="False" 
@@ -66,7 +67,7 @@
         onselectedindexchanged="grvRol_SelectedIndexChanged" 
         PageSize="5"
         emptydatatext="No existen datos para la consulta realizada" 
-        Font-Bold="False">
+        Font-Bold="False" Width="381px">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
         <AlternatingRowStyle BackColor="#CCCCCC" />

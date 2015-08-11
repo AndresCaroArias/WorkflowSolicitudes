@@ -31,14 +31,11 @@ namespace WorkflowSolicitudes.Datos
                         while (dr.Read())
                         {
                             LstRolesPrivilegios.Add(
-                                new RolesPrivilegios(
-                                        (int)dr["CODPRIVILEGIOS"],
-                                        (int)dr["CODROL"],
-                                        (int)dr["ESTADOROLPRIVI"],
-                                        (string)dr["DESCRIPCION"],
-                                        (string)dr["DESCPRIVILEGIOS"],
-                                        (string)dr["ESTADOROLESPRIVILEGIOS"]
-                                    ));
+                                new RolesPrivilegios((int)dr["CODPRIVILEGIOS"],
+                                    (int)dr["CODROL"],
+                                    (int)dr["ESTADOROLPRIVI"],
+                                    (string)dr["DESCPRIVILEGIOS"],
+                                    (string)dr["DESCRIPCION"]));
                         }
                     }
                 }
@@ -62,53 +59,6 @@ namespace WorkflowSolicitudes.Datos
 
             return Conexion.ejecutaNonQuery("sp_Set_Borra_RolesPrivilegios", parametros);
         }
-
-        public int ExisteElRolyPrivilegio(int CODROL, int CODPRIVILEGIOS)
-        {
-
-            int intCantidad = 0;
-            string StoredProcedure = "sp_Get_Consulta_ByCodRolCodPrivi_RolesPrivilegios";
-            using (DbConnection con = Conexion.dpf.CreateConnection())
-            {
-                con.ConnectionString = Conexion.constr;
-                using (DbCommand cmd = Conexion.dpf.CreateCommand())
-                {
-
-                    cmd.Connection = con;
-                    cmd.CommandText = StoredProcedure;
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    DbParameter paramintCodRol = cmd.CreateParameter();
-                    paramintCodRol.DbType = DbType.Int32;
-                    paramintCodRol.ParameterName = "CODROL";
-                    paramintCodRol.Value = CODROL;
-                    cmd.Parameters.Add(paramintCodRol);
-
-                    DbParameter paramintCodPrivilegio = cmd.CreateParameter();
-                    paramintCodPrivilegio.DbType = DbType.Int32;
-                    paramintCodPrivilegio.ParameterName = "CODPRIVILEGIOS";
-                    paramintCodPrivilegio.Value = CODPRIVILEGIOS;
-                    cmd.Parameters.Add(paramintCodPrivilegio);
-
-                    con.Open();
-
-                    using (DbDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (dr.Read())
-                        {
-                            intCantidad = (int)dr["CANTIDAD"];
-
-                        }
-
-                    }
-
-                    return intCantidad;
-                }
-            }
-
-        }
-
-
 
         public int InsertRolesPrivilegios(int CODPRIVILEGIOS, int CODROL, int ESTADOROLPRIVI)
         {
@@ -191,7 +141,7 @@ namespace WorkflowSolicitudes.Datos
                                         (int)dr["ESTADOROLPRIVI"],
                                         (string)dr["DESCRIPCION"],
                                         (string)dr["DESCPRIVILEGIOS"],
-                                        (string)dr["ESTADOROLESPRIVILEGIOS"]
+                                        (string)dr["ESTADOROLPRIVI"]
                                     ));
                         }
                     }
