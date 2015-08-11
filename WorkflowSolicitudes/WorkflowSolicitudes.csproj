@@ -76,6 +76,7 @@
     <Content Include="js\jquery-1.9.1.js" />
     <Content Include="js\jquery-ui.min.js" />
     <Content Include="js\jquery.min.js" />
+    <Content Include="Presentacion\BandejaEntrada.aspx" />
     <Content Include="Presentacion\MantUnidades.aspx" />
     <Content Include="imagenes\Copia de lupa.gif" />
     <Content Include="imagenes\eliminar1.jpg" />
@@ -97,6 +98,7 @@
     <Content Include="Presentacion\ConsultaSolicitudesInternas.aspx" />
     <Content Include="Presentacion\NuevaContraseña.aspx" />
     <Content Include="Presentacion\PageError.aspx" />
+    <Content Include="Presentacion\PageErrorE.aspx" />
     <Content Include="Presentacion\RecordarContraseña.aspx" />
     <Content Include="imagenes\adjuntar.png" />
     <Content Include="Presentacion\ConsultaActividades.aspx" />
@@ -134,7 +136,6 @@
     <Content Include="imagenes\lupa.gif" />
     <Content Include="Presentacion\About.aspx" />
     <Content Include="Presentacion\Administracion.aspx" />
-    <Content Include="Presentacion\BandejaEntrada.aspx" />
     <Content Include="Presentacion\Default.aspx" />
     <Content Include="Presentacion\DetalleSolicitud.aspx" />
     <Content Include="Presentacion\ListaDeTareas.aspx" />
@@ -197,6 +198,13 @@
     <Compile Include="Entidades\Unidades.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Negocio\NegErrores.cs" />
+    <Compile Include="Presentacion\BandejaEntrada.aspx.cs">
+      <DependentUpon>BandejaEntrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\BandejaEntrada.aspx.designer.cs">
+      <DependentUpon>BandejaEntrada.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\MantUnidades.aspx.cs">
       <DependentUpon>MantUnidades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -225,6 +233,13 @@
     </Compile>
     <Compile Include="Presentacion\PageError.aspx.designer.cs">
       <DependentUpon>PageError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\PageErrorE.aspx.cs">
+      <DependentUpon>PageErrorE.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Presentacion\PageErrorE.aspx.designer.cs">
+      <DependentUpon>PageErrorE.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\RecordarContraseña.aspx.cs">
       <DependentUpon>RecordarContraseña.aspx</DependentUpon>
@@ -372,13 +387,6 @@
     </Compile>
     <Compile Include="Presentacion\Administracion.aspx.designer.cs">
       <DependentUpon>Administracion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\BandejaEntrada.aspx.cs">
-      <DependentUpon>BandejaEntrada.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Presentacion\BandejaEntrada.aspx.designer.cs">
-      <DependentUpon>BandejaEntrada.aspx</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -17,14 +17,18 @@ namespace WorkflowSolicitudes
         public static int intDuracion { get; set; }
         public static string gblAccion { get; set; }
         public static int intCodActividad {get; set;}
-
-        
+        public static string strEstadoActividad { get; set; }
+        public static int intEstadoActividad {get; set; }
         
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+         
             if (!IsPostBack)
             {
+                gblAccion = "";
+                
                 intCodRoUser = Convert.ToInt32(Session["intCodRoUser"]);
                 Funciones ExisteAcceso = new Funciones();
 
@@ -51,6 +55,7 @@ namespace WorkflowSolicitudes
             grvActividad.DataBind();
             txtDescripcion.Text = string.Empty;
             txtDuracion.Text    = string.Empty;
+            chkEstadoActividad.Checked = false;
         }
 
         protected void grvActividad_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -77,18 +82,25 @@ namespace WorkflowSolicitudes
 
 
             NegActividad NegAct = new NegActividad();
-                    
-          
+
+            if (chkEstadoActividad.Checked)
+            {
+                intEstadoActividad = 1;
+            }
+            else
+            {
+                intEstadoActividad = 0;
+            }
 
                     if (gblAccion.Equals("Actualizar"))
                     {
-                       NegAct.ActualizarActividad(intCodActividad, txtDescripcion.Text, int.Parse(txtDuracion.Text));
+                        NegAct.ActualizarActividad(intCodActividad, txtDescripcion.Text, int.Parse(txtDuracion.Text), intEstadoActividad);
                        LoadGrid();
                        ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se actualizo correctamente');</script>");
                     }
                     else
                     {
-                        NegAct.AltaActividad(txtDescripcion.Text, int.Parse(txtDuracion.Text));
+                        NegAct.AltaActividad(txtDescripcion.Text, int.Parse(txtDuracion.Text), intEstadoActividad);
                         LoadGrid();
                         ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se ingreso correctamente');</script>");
                     }
@@ -147,24 +159,7 @@ namespace WorkflowSolicitudes
 
         protected void grvActividad_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-        //    int id = (int)grvActividad.DataKeys[e.RowIndex].Values[0];
-        //    GridViewRow Fila = grvActividad.Rows[e.RowIndex];
-
-
-        //    System.Web.UI.WebControls.TextBox EditDescripcion = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescripcion");
-        //    string descripcion = EditDescripcion.Text;
-
-        //    System.Web.UI.WebControls.TextBox EditDuracion = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDuracion");
-        //    int duracion = int.Parse(EditDuracion.Text);
-
-
-
-
-        //    (new NegActividad()).ActualizarActividad(id, descripcion, duracion);
-
-        //    grvActividad.EditIndex = -1;
-        //    LoadGrid();
-
+        
         }
 
         protected void grvActividad_SelectedIndexChanged(object sender, EventArgs e)
@@ -173,9 +168,19 @@ namespace WorkflowSolicitudes
             strDescripActividad = Convert.ToString(grvActividad.DataKeys[row.RowIndex].Values["strDescripActividad"]);
             intDuracion = Convert.ToInt32(grvActividad.DataKeys[row.RowIndex].Values["intDuracion"]);
             intCodActividad = Convert.ToInt32(grvActividad.DataKeys[row.RowIndex].Values["intCodActividad"]);
+            strEstadoActividad = Convert.ToString(grvActividad.DataKeys[row.RowIndex].Values["strEstadoActividad"]);
 
             txtDescripcion.Text = strDescripActividad;
             txtDuracion.Text = Convert.ToString(intDuracion);
+
+            if (strEstadoActividad.Equals("ACTIVO"))
+            {
+                chkEstadoActividad.Checked = true;
+            }
+            else
+            {
+                chkEstadoActividad.Checked = false;
+            }
 
             gblAccion = "Actualizar";
         }

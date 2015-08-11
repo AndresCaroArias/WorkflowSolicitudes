@@ -18,16 +18,16 @@ namespace WorkflowSolicitudes.Negocio
             return (new DatosActividad()).EliminarActividad(intCodActividad);
         }
 
-        public int AltaActividad(string strDescripActividad, int intDuracion)
+        public int AltaActividad(string strDescripActividad, int intDuracion, int intEstadoActivida)
         {
             DatosActividad DatAut = new DatosActividad();
-            return DatAut.InsertActividad(strDescripActividad, intDuracion);
+            return DatAut.InsertActividad(strDescripActividad, intDuracion, intEstadoActivida);
         }
 
-        public int ActualizarActividad(int intCodActividad, string strDescripActividad, int intDuracion)
+        public int ActualizarActividad(int intCodActividad, string strDescripActividad, int intDuracion, int intEstadoActividad)
         {
             DatosActividad DatAut = new DatosActividad();
-            return DatAut.ActualizarActividad(intCodActividad, strDescripActividad, intDuracion);
+            return DatAut.ActualizarActividad(intCodActividad, strDescripActividad, intDuracion, intEstadoActividad);
         }
 
         public List<Actividad> ObtenerActividad()

@@ -22,6 +22,15 @@ namespace WorkflowSolicitudes.Presentacion {
         protected global::System.Web.UI.HtmlControls.HtmlLink toggleCSS;
         
         /// <summary>
+        /// Control form1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        
+        /// <summary>
         /// Control lblNombre.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,13 @@ namespace WorkflowSolicitudes.Presentacion {
         protected global::System.Web.UI.WebControls.Label LblJornada;
         
         /// <summary>
-        /// Control HypNuevaSolicitud.
+        /// Control lnkNuevaSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HypNuevaSolicitud;
+        protected global::System.Web.UI.WebControls.LinkButton lnkNuevaSolicitud;
         
         /// <summary>
         /// Control lblMensaje.
@@ -65,15 +74,6 @@ namespace WorkflowSolicitudes.Presentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
-        
-        /// <summary>
-        /// Control form1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
         /// Control GridView1.

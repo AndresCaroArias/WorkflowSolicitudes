@@ -20,13 +20,11 @@ namespace WorkflowSolicitudes.Presentacion
         private static DataTable movSource;
         private static String orden = "ASC";        
 
-         protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
 
             //try
             //{
-                //PrchBtnHiddenNo.Click += PrchBtnHiddenNo_Click;
-                //PrchBtnHiddenYes.Click += PrchBtnHiddenYes_Click;
 
                 //string ref1 = Request.ServerVariables["HTTP_REFERER"];
                 //if (Request.ServerVariables["HTTP_REFERER"].Equals("http://10.0.0.2/Prueba.asp")) /// Codigo para verificar servidor de envio post
@@ -51,8 +49,7 @@ namespace WorkflowSolicitudes.Presentacion
 
                 ////}
 
-                //PrchBtnHiddenYes.Click += new EventHandler(GridView1_RowDeleting);
-                //PrchBtnHiddenYes.Click += new GridViewDeleteEventHandler(GridView1_RowDeleting,);
+
 
             //}
             //catch (Exception)
@@ -63,20 +60,7 @@ namespace WorkflowSolicitudes.Presentacion
  
         }
 
-         //void PrchBtnHiddenYes_Click(object sender, EventArgs e)
-         //{
-
-         //    ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alertify.success('Solicitud Anulada')", true);
-             
-
-         //}
-
-         //void PrchBtnHiddenNo_Click(object sender, EventArgs e)
-         //{
-         //    ScriptManager.RegisterStartupScript(this, typeof(string), "alert", "alertify.error('Registro Cancelado')", true);
-         //}
-
-         private void Obtener_RutAlumno(string StrCodCli)
+        private void Obtener_RutAlumno(string StrCodCli)
          {
              List<Alumnos> LstAlumnnos = new List<Alumnos>();
              NegAlumnos NegAlumno = new NegAlumnos();
@@ -89,15 +73,14 @@ namespace WorkflowSolicitudes.Presentacion
              }
          }   
 
-
-         private void lee_grilla(string StrRutAlumno) 
+        private void lee_grilla(string StrRutAlumno) 
         {
             NegSolicitud NegSolicitudes = new NegSolicitud();
             GridView1.DataSource = NegSolicitudes.ObtenerSolicitudes(StrRutAlumno);
             GridView1.DataBind();
         }
 
-         private void lee_alumnos(string StrCodCli)
+        private void lee_alumnos(string StrCodCli)
         {
             List<Alumnos> LstAlumnnos = new List<Alumnos>();
             NegAlumnos NegAlumno = new NegAlumnos();
@@ -138,11 +121,13 @@ namespace WorkflowSolicitudes.Presentacion
         {
             lblMensaje.Text = String.Empty;
             GridViewRow row = GridView1.SelectedRow;
-            int Folio = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
-            Response.Redirect("DetalleSolicitud.aspx?folio="+Folio);
+            int intFolio = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
+
+            Funciones FuncionesEncriptar = new Funciones();
+            string fol = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt(Convert.ToString(intFolio)));
+            Response.Redirect("DetalleSolicitud.aspx?folio=" + fol);
            
         }
-
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -206,8 +191,6 @@ namespace WorkflowSolicitudes.Presentacion
             return newSortDirection;
         }
 
-        
-
         protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)
         {
             DataTable dataTable = GridView1.DataSource as DataTable;
@@ -250,8 +233,13 @@ namespace WorkflowSolicitudes.Presentacion
 
         }
 
-        protected void PrchBtn_Click(object sender, EventArgs e)
+        protected void lnkNuevaSolicitud_Click(object sender, EventArgs e)
         {
+
+            Funciones FuncionesEncriptar = new Funciones();
+            string session = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt("StrCodCli"));
+            Response.Redirect("NuevaSolicitud.aspx?session=" + session);
+
 
         }
     }

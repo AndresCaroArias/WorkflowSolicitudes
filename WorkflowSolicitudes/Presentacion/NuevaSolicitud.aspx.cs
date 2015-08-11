@@ -27,14 +27,26 @@ namespace WorkflowSolicitudes.Presentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            StrRutAlumno  = Convert.ToString(Session["StrRutAlumno"]);
+            String dummy;
+           
+            
+            StrRutAlumno = Convert.ToString(Session["StrRutAlumno"]);
             StrCodCarrera = Convert.ToString(Session["StrCodCarrera"]);
 
             if (!Page.IsPostBack)
             {
                 intContador = 0;
                 lee_ComboTipoSolicitud();
+
+                Funciones FuncionesDesencriptar = new Funciones();
+
+                if (!(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"]))).Equals("Error_Autorizacion"))
+                    dummy = Convert.ToString(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"])));
+                else
+                {
+                    string Error = HttpUtility.UrlEncode(FuncionesDesencriptar.Encrypt("Error_Autorizacion"));
+                    Response.Redirect("PageErrorE.aspx?TypeError=" + Error);
+                }
             }
 
         
@@ -51,7 +63,6 @@ namespace WorkflowSolicitudes.Presentacion
         
          }
 
-         
          protected void BtnEnviar_Click(object sender, EventArgs e)
          {
              NegSolicitud InsertaSolicitud = new NegSolicitud();

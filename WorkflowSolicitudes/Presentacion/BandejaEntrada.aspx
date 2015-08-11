@@ -51,8 +51,8 @@ textbox
     </div>
 </head>
 
-<body style="color: #003300; background-color: #33CC33">
-
+<body style="color: #003300; background-color: #33CC33" >
+    <form id="form1" runat="server">
     <div class="container">
         <div class ="row-fluid">
             <div class ="span12"><h3 class="text-center"></h3></div>
@@ -87,9 +87,9 @@ textbox
             <div class ="span3"></div>
             <div class ="span3"></div>
             <div class ="span3">
-                <asp:HyperLink ID="HypNuevaSolicitud" runat="server" 
-                    NavigateUrl="~/Presentacion/NuevaSolicitud.aspx">Nueva Solicitud</asp:HyperLink>
+            <asp:LinkButton ID="lnkNuevaSolicitud" runat="server" OnClick="lnkNuevaSolicitud_Click">Nueva Solicitud</asp:LinkButton>
             </div>
+            
             <div class ="span3"></div>
         </div>
 
@@ -110,7 +110,7 @@ textbox
         <div class ="row-fluid">
             <div class ="span4"></div>
             <div class ="span8"> 
-                <form id="form1" runat="server">
+
           
 
    <asp:GridView ID="GridView1" 
@@ -143,16 +143,10 @@ textbox
 <%--            <asp:CommandField DeleteImageUrl="~/imagenes/eliminar.gif" 
                 HeaderText="Anular?" ShowDeleteButton="True" ShowHeader="True"  />--%>
                 <asp:TemplateField HeaderText="Anulacion">
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="lnkDelete" CommandName="delete" runat="server" OnClientClick="return confirm('Favor confirmar Anulacion')">Anular</asp:LinkButton>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                               
-
-           
-
-                                    
-          
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkDelete" CommandName="delete" runat="server" OnClientClick="return confirm('Favor confirmar Anulacion')">Anular</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>                       
             </Columns>
             <FooterStyle BackColor="#CCCCCC" />
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

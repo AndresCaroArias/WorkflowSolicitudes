@@ -13,13 +13,13 @@ namespace WorkflowSolicitudes.Datos
 {
     public class DatosActividad
     { 
-        public DatosActividad() { } 
-        
+        public DatosActividad() { }
 
 
-     
 
-        public int InsertActividad(string DESCRIPCION, int DURACION)
+
+
+        public int InsertActividad(string DESCRIPCION, int DURACION, int ESTADOACTIVIDAD)
         {
             List<DbParameter> parametros = new List<DbParameter>(); ;
 
@@ -34,10 +34,15 @@ namespace WorkflowSolicitudes.Datos
             param2.ParameterName = "DURACION";
             parametros.Add(param2);
 
+            DbParameter param3 = Conexion.dpf.CreateParameter();
+            param3.Value = ESTADOACTIVIDAD;
+            param3.ParameterName = "ESTADOACTIVIDAD";
+            parametros.Add(param3);
+
             return Conexion.ejecutaNonQuery("sp_Set_Inserta_Actividad", parametros);
         }
 
-        public int ActualizarActividad(int CODACTIVIDAD, string DESCRIPCION, int DURACION)
+        public int ActualizarActividad(int CODACTIVIDAD, string DESCRIPCION, int DURACION, int ESTADOACTIVIDAD)
         {
 
             List<DbParameter> parametros = new List<DbParameter>(); ;
@@ -56,6 +61,11 @@ namespace WorkflowSolicitudes.Datos
             paramDuracion.Value = DURACION;
             paramDuracion.ParameterName = "DURACION";
             parametros.Add(paramDuracion);
+
+            DbParameter paramEstad = Conexion.dpf.CreateParameter();
+            paramEstad.Value = ESTADOACTIVIDAD;
+            paramEstad.ParameterName = "ESTADOACTIVIDAD";
+            parametros.Add(paramEstad);
 
             return Conexion.ejecutaNonQuery("sp_Set_Actualiza_Actividad", parametros);
         }
@@ -133,7 +143,8 @@ namespace WorkflowSolicitudes.Datos
                             LstActividad.Add(
                                 new Actividad((int)dr["CODACTIVIDAD"],
                                     (string)dr["DESCRIPCION"],
-                                    (int)dr["DURACION"]));
+                                    (int)dr["DURACION"],
+                                    (string)dr["ESTADOACTIVIDAD"]));
                         }
                     }
                 }

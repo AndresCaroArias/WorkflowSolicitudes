@@ -250,34 +250,32 @@ namespace WorkflowSolicitudes.Presentacion
             NegDetalleSolicitud ResuelveActividad  = new NegDetalleSolicitud();
            
 
-            if (!strSecuenciaNo.Equals(String.Empty))
-            {
-                if ((!RbtSI.Checked) && (!RbtNO.Checked)) 
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Debe selecionar SI  ó NO para aprobar o rechazar la Actividad');</script>");
-                    return;
-                }   
-            }
-           
             if (txtResolucion.Text.Equals(String.Empty))
             {
                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Debe ingresar un comentario u observacion al respecto');</script>");
                return;
             }
-            
-            
+
+
+            if (!strSecuenciaNo.Equals(String.Empty))
+            {
+                if ((!strSecuenciaNo.Equals("0")) && (!strSecuenciaNo.Equals("0")))
+                {
+                    if ((!RbtSI.Checked) && (!RbtNO.Checked))
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Debe selecionar SI  ó NO para aprobar o rechazar la Actividad');</script>");
+                        return;
+                    }
+                }
+
+            }
+
             if (RbtSI.Checked)
             {
                 intCodEstadSol = 2;
                 intCodEstadoAct = 8;
                 strAprobadaAuditoria = "APROBADA";
                 strSiguienteSecuencia = strSecuenciaSi;
-
-                if (intAprobador.Equals(1))
-                {
-                    ResuelveActividad.ApruebaLaSolicitud(intFolioSolicitud, intSecuencia);
-                }
-                
                 InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "RESUELVE LA ACTIVIDAD ", "ACTIVIDIDAD APROBADA " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio.Text);
             }
 
@@ -298,20 +296,11 @@ namespace WorkflowSolicitudes.Presentacion
 
             if (strSecuenciaNo.Equals("0") && (strSecuenciaSi.Equals("0")))
             {
-                intExisteUnaAprobada = ResuelveActividad.ExisteAlmenosUnaAprobacion(intFolioSolicitud);
-                if (intExisteUnaAprobada.Equals(1) )
-                {
-                    intCodEstadSol = 2;
-                }
-                else
-                {
-                    intCodEstadSol = 3;
-                }
                 intCodEstadoAct = 8;
-                ResuelveActividad.CierraProceso(intFolioSolicitud, intSecuencia, intCodEstadSol, intCodEstadoAct, strGlosaDetalleSol);
+                intCodEstadSol = 2; 
+                ResuelveActividad.CierraProceso(intFolioSolicitud, intSecuencia, intCodEstadSol, intCodEstadoAct, txtResolucion.Text);
                 InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "RESUELVE LA ACTIVIDAD ", "SE COMPLETA LA " + lblActividad.Text + "SE TERMINA EL FLUJO PARA SOLICITUD " + lbltipoSolicitud.Text + " PARA EL FOLIO :" + lblFolio.Text);
                 Response.Redirect("ListaDeTareas.aspx?StrRutUsuario=" + StrRutResponsable);
-                
             }
 
 
@@ -357,6 +346,12 @@ namespace WorkflowSolicitudes.Presentacion
             }
             else
             {
+                if (strSecuenciaNo.Equals("0") && (strSecuenciaSi.Equals("0")))
+                {
+                    intCodEstadSol = 2;
+                    intCodEstadoAct = 8;
+                }
+                
                 ResuelveActividad.CierraProceso(intFolioSolicitud, intSecuencia, intCodEstadSol, intCodEstadoAct, strGlosaDetalleSol);    
             }
 

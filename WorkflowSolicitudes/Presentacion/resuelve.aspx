@@ -176,8 +176,8 @@
 
 <div class ="row-fluid">
 <div class ="span12"> 
-    <asp:TextBox ID="txtResolucion" runat="server" Height="75px" 
-        TextMode="MultiLine" Width="910px" 
+    <asp:TextBox ID="txtResolucion" runat="server" Height="90px" 
+        TextMode="MultiLine" Width="1028px" 
         style="margin-left: 3px; margin-top: 0px"></asp:TextBox></div>
 </div>
 

@@ -11,27 +11,39 @@ namespace WorkflowSolicitudes.Presentacion
 {
     public partial class DetalleSolicitud : System.Web.UI.Page
     {
-        public static String StrPrivilegio { get; set; }
+        public static int intFolioSolicitud { get; set; }
+        public static int intCodTipoSolicitud { get; set; }
+        public static String strPrivilegio { get; set; }
+    
         protected void Page_Load(object sender, EventArgs e)
         {
-            int intFolioSolicitud;
-            int intCodTipoSolicitud;
+   
             List<WorkflowSolicitudes.Entidades.DetalleSolicitud> LstDetalleSolicitud = new List<WorkflowSolicitudes.Entidades.DetalleSolicitud>();
             NegTipoSolicitud TipoSolicitud = new NegTipoSolicitud();
 
             if (!Page.IsPostBack)
-            
-                intFolioSolicitud = Convert.ToInt32(Request.QueryString["folio"]);
-                lblFolio.Text = Request.QueryString["folio"];
-                LstDetalleSolicitud = lee_grilla(Convert.ToInt32(Request.QueryString["folio"]));
+            {
+
+                Funciones FuncionesDesencriptar = new Funciones();
+
+                if (!(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["folio"]))).Equals("Error_Autorizacion"))
+                    intFolioSolicitud = Convert.ToInt32(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["folio"])));
+                else
+                {
+                    string Error = HttpUtility.UrlEncode(FuncionesDesencriptar.Encrypt("Error_Autorizacion"));
+                    Response.Redirect("PageErrorE.aspx?TypeError=" + Error);
+                }
+
+                lblFolio.Text = Convert.ToString(intFolioSolicitud);
+                LstDetalleSolicitud = lee_grilla(intFolioSolicitud);
 
                 foreach (WorkflowSolicitudes.Entidades.DetalleSolicitud Deta in LstDetalleSolicitud)
                 {
                     intCodTipoSolicitud = Deta.intCodTipoSolicitud;
                     LblDesctipoSolicitud.Text = TipoSolicitud.ObtenerDescTipoSolicitud(intCodTipoSolicitud);
                 }
-                
-             
+
+            }
 
         }
 
