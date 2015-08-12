@@ -31,6 +31,7 @@ namespace WorkflowSolicitudes
         {
             if (!IsPostBack)
             {
+                StrRutUsuario = Convert.ToString(Session["strRutUsuario"]);
                 intCodRoUser = Convert.ToInt32(Session["intCodRoUser"]);
                 Funciones ExisteAcceso = new Funciones();
                   Boolean ExistePrivilegio = ExisteAcceso.TieneAcceso(intCodRoUser, StrPrivilegio);
@@ -238,6 +239,7 @@ namespace WorkflowSolicitudes
 
         protected void imbFin_Click(object sender, ImageClickEventArgs e)
         {
+            NegAuditoria InsertarLog = new NegAuditoria();
             if (CldFechaFin.Visible == false)
             {
                 CldFechaFin.Visible = true;
@@ -252,6 +254,7 @@ namespace WorkflowSolicitudes
         protected void btnInsertarTS_Click(object sender, ImageClickEventArgs e)
         {
         int IntEstado;
+        NegAuditoria InsertarLog = new NegAuditoria();
 
         if (ChkEstado.Checked)
 	    {
@@ -308,6 +311,8 @@ namespace WorkflowSolicitudes
                                                  int.Parse(txtCantidadSol.Text),
                                                  ddlOrigenSolicitud.Text,
                                                  int.Parse(txtCantMaxDoc.Text)) > 0)
+
+                            InsertarLog.InsertaAuditoria(StrRutUsuario, "MANTENEDOR DE TIPO DE SOLICITUDES", "CREAR NUEVO TIPO DE SOLICITUD ", "SE CREA EL TIPO DE SOLICITUD" +txtDescripcionTS.Text);
                         {
                             LoadGrid();
 
@@ -321,8 +326,9 @@ namespace WorkflowSolicitudes
 
                     if (gblAccion.Equals("Actualizar"))
                     {
-                        (new NegTipoSolicitud()).ActualizarTipoSolicitud(intCodTipoSolicitud, txtDescripcionTS.Text, intEstadoSolicitud, DateTime.Parse(txtFechaInicio.Text), DateTime.Parse(txtFechaFin.Text), int.Parse(txtCantidadSol.Text), ddlOrigenSolicitud.Text, int.Parse(txtCantMaxDoc.Text));
-
+                        (new NegTipoSolicitud()).ActualizarTipoSolicitud(intCodTipoSolicitud, txtDescripcionTS.Text, IntEstado, DateTime.Parse(txtFechaInicio.Text), DateTime.Parse(txtFechaFin.Text), int.Parse(txtCantidadSol.Text), ddlOrigenSolicitud.Text, int.Parse(txtCantMaxDoc.Text));
+                        InsertarLog.InsertaAuditoria(StrRutUsuario, "MANTENEDOR DE TIPO DE SOLICITUDES", "ACTUALIZAR TIPO DE SOLICITUD ", "SE ACTUALIZO" +txtDescripcionTS.Text);
+         
                     }
 
                     grvTipoSolicitud.EditIndex = -1;
