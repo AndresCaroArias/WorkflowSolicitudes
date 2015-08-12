@@ -11,13 +11,19 @@ namespace WorkflowSolicitudes
     public partial class Formulario_web13 : System.Web.UI.Page
     {
         public static String StrPrivilegio = "MantUnidades.aspx";
+        public static string gblAccion { get; set; }
         public static String StrRutUsuario { get; set; }
         public static int intCodRoUser { get; set; }
+        public static string strDescripcionUnidad {get; set;}
+        public static string strEstadoUnidad { get; set; }
+        public static int intCodUnidad { get; set; }
+        public static int intEstadoUnidad { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                gblAccion = "";
                 intCodRoUser = Convert.ToInt32(Session["intCodRoUser"]);
                 Funciones ExisteAcceso = new Funciones();
 
@@ -25,7 +31,7 @@ namespace WorkflowSolicitudes
 
                 if (ExistePrivilegio.Equals(false))
                 {
-                    lblAcceso.Text = "ERROR : Usted no tiene acceso a esta opción";
+                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR : Usted no tiene acceso a esta opción');</script>");
                     return;
                 }
                 LoadGrid();      
@@ -39,6 +45,8 @@ namespace WorkflowSolicitudes
             grvUnidad.DataSource = NegocioUnid.ObtenerUnidades();
             grvUnidad.DataBind();
             txtDescripcionUnidad.Text = string.Empty;
+            chkEstadoUnidad.Checked = false;
+
         }
 
         protected void grvUnidad_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -66,39 +74,32 @@ namespace WorkflowSolicitudes
 
         protected void grvUnidad_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int id = (int)grvUnidad.DataKeys[e.RowIndex].Values[0];
-            GridViewRow Fila = grvUnidad.Rows[e.RowIndex];
-            int intEstadoUnidad;
-
-            System.Web.UI.WebControls.TextBox EditDescripcionUnidad = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescripcionUnidad");
-            string descripcion = EditDescripcionUnidad.Text;
-
-
-            System.Web.UI.WebControls.CheckBox EditEstadoUnidad = (System.Web.UI.WebControls.CheckBox)Fila.FindControl("chkEditEstadoUnidad");
-
-
-            
-
-            if (EditEstadoUnidad.Checked)
-                {
-                    intEstadoUnidad = 1;
-                }
-                else
-                {
-                    intEstadoUnidad = 0;
-               }
-            (new NegUnidades()).ActualizarUnidad(id, descripcion, intEstadoUnidad);
-
-            grvUnidad.EditIndex = -1;
-            LoadGrid();
-
-
-           }
+        }
 
         protected void grvUnidad_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            GridViewRow row = grvUnidad.SelectedRow;
+
+            intCodUnidad = Convert.ToInt32(grvUnidad.DataKeys[row.RowIndex].Values["intCodUnidad"]);
+            strDescripcionUnidad = Convert.ToString(grvUnidad.DataKeys[row.RowIndex].Values["strDescripcionUnidad"]);
+            strEstadoUnidad = Convert.ToString(grvUnidad.DataKeys[row.RowIndex].Values["strEstadoUnidad"]);
+
+            txtDescripcionUnidad.Text = strDescripcionUnidad;
+            if (strEstadoUnidad.Equals("ACTIVO"))
+            {
+                chkEstadoUnidad.Checked = true;
+            }
+            else
+            {
+                chkEstadoUnidad.Checked = false;
+            }
+
+            gblAccion = "Actualizar";
         }
+
+
+        
 
         protected void btnInsertar_Click(object sender, ImageClickEventArgs e)
         {
@@ -106,8 +107,8 @@ namespace WorkflowSolicitudes
             lblMensaje.Text = String.Empty;
             if (txtDescripcionUnidad.Text.Equals(String.Empty))
             {
-                lblMensaje.Text = "ERROR: Ingrese la descripción del rol";
-               
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Ingrese la descripción del rol');</script>");
+                               
                 return;
             }
 
@@ -131,19 +132,33 @@ namespace WorkflowSolicitudes
 
             if (!intExisteUnidad.Equals(0))
             {
-                lblMensaje.Text = "ERROR: Unidad ya existe";
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Unidad ya existe');</script>");
+                lblMensaje.Text = "";
                 txtDescripcionUnidad.Text = String.Empty;
                 return;
             }
 
-
-            NegocioUnidades.AltaUnidades(txtDescripcionUnidad.Text, intEstadoUnidad);
-           
-           
+            if (gblAccion.Equals("Actualizar"))
             {
-
+                (new NegUnidades()).ActualizarUnidad(intCodUnidad, txtDescripcionUnidad.Text, intEstadoUnidad);
                 LoadGrid();
+                gblAccion = "";
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se actualizo correctamente');</script>");
             }
+            else
+            {
+                NegocioUnidades.AltaUnidades(txtDescripcionUnidad.Text, intEstadoUnidad);
+                LoadGrid();
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se ingreso correctamente');</script>");
+            }
+
+
+            grvUnidad.EditIndex = -1;
+            LoadGrid();
+                    
+
+
+
 
         }
         }

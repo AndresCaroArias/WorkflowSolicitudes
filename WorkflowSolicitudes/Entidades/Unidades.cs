@@ -12,6 +12,9 @@ namespace WorkflowSolicitudes.Entidades
         private int _intCodUnidad;
         private string _strDescripcionUnidad;        
         private int _intEstadoUnidad;
+        private string _strEstadoUnidad;
+
+        
         
         #endregion
 
@@ -23,6 +26,12 @@ namespace WorkflowSolicitudes.Entidades
         {
             this.intCodUnidad = intCodUnidad;
         }
+        public Unidades(int intCodUnidad, string strDescripcionUnidad, string strEstadoUnidad)
+        {
+            this.intCodUnidad = intCodUnidad;
+            this.strDescripcionUnidad = strDescripcionUnidad;
+            this.strEstadoUnidad = strEstadoUnidad;
+        }       
 
 
         public Unidades(int intCodUnidad, string strDescripcionUnidad, int intEstadoUnidad) 
@@ -53,7 +62,11 @@ namespace WorkflowSolicitudes.Entidades
             get { return _intEstadoUnidad; }
             set { _intEstadoUnidad = value; }
         }
-        
+        public string strEstadoUnidad
+        {
+            get { return _strEstadoUnidad; }
+            set { _strEstadoUnidad = value; }
+        }
 
         #endregion
     }

@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MantUnidades.aspx.cs" Inherits="WorkflowSolicitudes.Formulario_web13" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+<link href="../css/alertify.core.css" rel="stylesheet" type="text/css" />
+ <link href="../css/alertify.default.css" rel="stylesheet" type="text/css" id="toggleCSS" />
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -41,8 +44,11 @@
 
 <div class ="row-fluid">
 <div class ="span12">
-    <asp:GridView ID="grvUnidad" runat="server"  
-        AutoGenerateColumns="False" AllowPaging="True"
+    <asp:GridView 
+        ID="grvUnidad" 
+        runat="server"  
+        AutoGenerateColumns="False" 
+        AllowPaging="True"
         BackColor="White"
 		BorderColor="#999999"
 		BorderStyle="Solid"
@@ -55,20 +61,17 @@
         onrowdeleting="grvUnidad_RowDeleting" 
         onrowediting="grvUnidad_RowEditing"
         onrowupdating="grvUnidad_RowUpdating" 
-        DataKeyNames="intCodUnidad" 
+        DataKeyNames="intCodUnidad, strDescripcionUnidad, strEstadoUnidad" 
         onselectedindexchanged="grvUnidad_SelectedIndexChanged"
         emptydatatext="No existen datos para la consulta realizada" 
         Font-Bold="False">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
-        <AlternatingRowStyle BackColor="#CCCCCC" />
-        <Columns>
-                <asp:CommandField ButtonType="Image" EditImageUrl="~/imagenes/editar.gif" 
-                    ShowEditButton="True" />
-                
+            <AlternatingRowStyle BackColor="#CCCCCC" />
+            <Columns>
 
-
-            <asp:TemplateField HeaderText="Codigo">
+            <asp:CommandField ButtonType="Image" SelectImageUrl="~/imagenes/editar.gif" ShowSelectButton="True" ShowCancelButton="False" />
+            <asp:TemplateField HeaderText="Codigo" Visible="False">
 
             <ItemTemplate>
             <asp:Label ID="lblCodUnidad" runat="server" Text='<%#Bind("intCodUnidad") %>'/>
@@ -89,17 +92,15 @@
             <asp:TemplateField HeaderText="Estado">
                         
             <ItemTemplate>
-                <asp:LinkButton ID="LinkButton1" runat="server">Activo</asp:LinkButton>
+                 <asp:Label ID="lblDEstado" runat="server" Text='<%#Bind("strEstadoUnidad") %>'/>
             </ItemTemplate>
-                        
+
             <EditItemTemplate>
-             <asp:CheckBox ID="chkEditEstadoUnidad" runat="server" EnableViewState="False" Text='<%# Bind("intEstadoUnidad") %>' />
-            
+            <asp:TextBox ID="txtEditEstadoRol" runat="server" Text='<%#Bind("strEstadoUnidad") %>'/>
             </EditItemTemplate>
+
             </asp:TemplateField>
 
-
-           
             </Columns>
             <FooterStyle BackColor="#CCCCCC" />
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

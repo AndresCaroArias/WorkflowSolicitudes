@@ -377,10 +377,11 @@ namespace WorkflowSolicitudes.Presentacion
 
             doc.AddTitle("Detalle de la Solicitud");
             doc.AddCreator("Workflow Solicitudes CIISA");
-
+            string ruta = Server.MapPath("/") + "/imagenes/logoCiisaPDF.jpg";
+            
 
             doc.Open();
-            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(@"C:\logoCiisaPDF.jpg");
+            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(@ruta);
             imagen.BorderWidth = 0;
             imagen.Alignment = Element.ALIGN_LEFT;
             float percentage = 0.0f;

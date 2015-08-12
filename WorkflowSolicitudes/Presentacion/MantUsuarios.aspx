@@ -97,7 +97,7 @@
         onselectedindexchanged="grvUsuarios_SelectedIndexChanged" 
         onrowcommand="grvUsuarios_RowCommand"
         emptydatatext="No existen datos para la consulta realizada" 
-        Font-Bold="False">
+        Font-Bold="False" Width="1080px">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
 

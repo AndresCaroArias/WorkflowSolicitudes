@@ -52,7 +52,8 @@
             emptydatatext="No existen datos en la Grilla" 
             Font-Bold="False" 
             AllowPaging="True" 
-            onselectedindexchanged="grvActividad_SelectedIndexChanged">
+            onselectedindexchanged="grvActividad_SelectedIndexChanged" 
+        Width="477px">
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
 
             <AlternatingRowStyle BackColor="#CCCCCC" />

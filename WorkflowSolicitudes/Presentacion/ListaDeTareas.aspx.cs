@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WorkflowSolicitudes.Negocio;
 using System.Data;
+using WorkflowSolicitudes.Entidades;
 
 
 namespace WorkflowSolicitudes.Presentacion
@@ -13,12 +14,24 @@ namespace WorkflowSolicitudes.Presentacion
     public partial class ListaDeTareas : System.Web.UI.Page    {
         public static String StrRutUsuario { get; set; }
         public static int intCodUnidad { get; set; }
+        public static List<Unidades> LstUnidades = new List<Unidades>();
         public static String StrPrivilegio = "ListaDeTareas.aspx";
         
         protected void Page_Load(object sender, EventArgs e)
         {
             StrRutUsuario = Convert.ToString(Session["strRutUsuario"]);
             intCodUnidad = Convert.ToInt32(Session["intCodUnidad"]);
+
+
+            NegUnidades NegUnidades = new NegUnidades();
+            LstUnidades = NegUnidades.ConsultaByCodUnidadUnidades(intCodUnidad);
+
+            foreach (Unidades Unidad in LstUnidades)
+            {
+                lblDescUnidad.Text  = "Actividades asignadas a la unidad :" + Unidad.strDescripcionUnidad.ToUpper();
+            }
+                
+
 
             if (StrRutUsuario.Equals(String.Empty))
             {

@@ -188,7 +188,15 @@ namespace WorkflowSolicitudes
         protected void ddlRol_SelectedIndexChanged(object sender, EventArgs e)
         {
             NegRolesPrivilegios NegocioRolPrivi = new NegRolesPrivilegios();
-            grvRolPrivilegios.DataSource        = NegocioRolPrivi.ConsultaRolByRolesPrivi(Convert.ToInt32(ddlRol.SelectedValue));
+            if (ddlRol.SelectedIndex.Equals(0)) 
+            {
+                grvRolPrivilegios.DataSource = NegocioRolPrivi.ObtenerRolesPrivilegios();
+            }
+            else
+            {
+                grvRolPrivilegios.DataSource = NegocioRolPrivi.ConsultaRolByRolesPrivi(Convert.ToInt32(ddlRol.SelectedValue));
+            }
+            
             grvRolPrivilegios.DataBind();
         }
 

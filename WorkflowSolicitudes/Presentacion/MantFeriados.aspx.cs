@@ -12,13 +12,19 @@ namespace WorkflowSolicitudes
     public partial class Formulario_web24 : System.Web.UI.Page
     {
         public static String StrPrivilegio = "MantFeriados.aspx";
+        public static string gblAccion { get; set; }
         public static String StrRutUsuario { get; set; }
         public static int intCodRoUser { get; set; }
+        public static int intCodFeriado { get; set; }
+        public static String strDescFeriado { get; set; }
+        public static DateTime dtmFechaFeriado { get; set; }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                gblAccion = "";
                 intCodRoUser = Convert.ToInt32(Session["intCodRoUser"]);
                 Funciones ExisteAcceso = new Funciones();
                 CldFeriado.Visible = false;
@@ -75,12 +81,24 @@ namespace WorkflowSolicitudes
 
             
             NegFeriados NegocioFeria = new NegFeriados();
-            NegocioFeria.AltaFeriados(txtDescripcionFeriados.Text, DateTime.Parse(txtFechasFeriados.Text));
-
+           
+            if (gblAccion.Equals("Actualizar"))
             {
-
+                (new NegFeriados()).ActualizarFeria(intCodFeriado, txtDescripcionFeriados.Text, DateTime.Parse(txtFechasFeriados.Text));
                 LoadGrid();
+                gblAccion = "";
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se actualizo correctamente');</script>");
             }
+            else
+            {
+                NegocioFeria.AltaFeriados(txtDescripcionFeriados.Text, DateTime.Parse(txtFechasFeriados.Text));
+                LoadGrid();
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se ingreso correctamente');</script>");
+            }
+
+
+            grvFeriado.EditIndex = -1;
+            LoadGrid();
 
 
         }
@@ -118,26 +136,35 @@ namespace WorkflowSolicitudes
 
         protected void grvFeriado_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int id = (int)grvFeriado.DataKeys[e.RowIndex].Values[0];
-            GridViewRow Fila = grvFeriado.Rows[e.RowIndex];
+            //int id = (int)grvFeriado.DataKeys[e.RowIndex].Values[0];
+            //GridViewRow Fila = grvFeriado.Rows[e.RowIndex];
 
 
-            System.Web.UI.WebControls.TextBox EditCodFeriado = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescFeriado");
-            string descripcion = EditCodFeriado.Text;
+            //System.Web.UI.WebControls.TextBox EditCodFeriado = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescFeriado");
+            //string descripcion = EditCodFeriado.Text;
 
-            System.Web.UI.WebControls.TextBox EditDescFeriado = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditFechaFeriado");
-            DateTime fecha = Convert.ToDateTime(EditDescFeriado.Text);
+            //System.Web.UI.WebControls.TextBox EditDescFeriado = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditFechaFeriado");
+            //DateTime fecha = Convert.ToDateTime(EditDescFeriado.Text);
 
 
-            (new NegFeriados()).ActualizarFeria(id, descripcion, fecha);
+            //(new NegFeriados()).ActualizarFeria(id, descripcion, fecha);
 
-            grvFeriado.EditIndex = -1;
-            LoadGrid();
+            //grvFeriado.EditIndex = -1;
+            //LoadGrid();
         }
 
         protected void grvFeriado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow row = grvFeriado.SelectedRow;
 
+            intCodFeriado = Convert.ToInt32(grvFeriado.DataKeys[row.RowIndex].Values["intCodFeriado"]);
+            strDescFeriado = Convert.ToString(grvFeriado.DataKeys[row.RowIndex].Values["strDescFeriado"]);
+            dtmFechaFeriado = Convert.ToDateTime(grvFeriado.DataKeys[row.RowIndex].Values["dtmFechaFeriado"]);
+
+            txtDescripcionFeriados.Text = strDescFeriado;
+            txtFechasFeriados.Text =Convert.ToString(dtmFechaFeriado);
+
+            gblAccion = "Actualizar";
         }
 
         protected void imbFeriado_Click(object sender, ImageClickEventArgs e)

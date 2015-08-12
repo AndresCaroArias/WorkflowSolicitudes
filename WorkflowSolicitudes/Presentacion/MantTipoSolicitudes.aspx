@@ -152,7 +152,7 @@
             GridLines="Vertical" 
             style="text-align: center" 
             Height="90%" 
-            Width="90%"
+            Width="96%"
             emptydatatext="No existen datos para la consulta realizada" 
             Font-Bold="False">
 

@@ -79,6 +79,7 @@ namespace WorkflowSolicitudes.Presentacion
 
                 ConsultaSolicitudFolio(Convert.ToInt32(lblFolio.Text));
                 lblActividad.Text = ConsultaActividad(intSecuencia, intCodTipoSolicitud);
+                lblActividadResolver.Text = lblActividad.Text;
                 NegDatellSolicitud.ActualizaFechaTomaActividad(intFolioSolicitud, intSecuencia, StrRutResponsable);
 
                 NegAuditoria InsertarLog = new NegAuditoria();

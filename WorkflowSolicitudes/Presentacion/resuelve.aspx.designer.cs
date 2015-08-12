@@ -166,6 +166,15 @@ namespace WorkflowSolicitudes.Presentacion {
         protected global::System.Web.UI.WebControls.Label lblAprobar;
         
         /// <summary>
+        /// Control lblActividadResolver.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblActividadResolver;
+        
+        /// <summary>
         /// Control RbtSI.
         /// </summary>
         /// <remarks>

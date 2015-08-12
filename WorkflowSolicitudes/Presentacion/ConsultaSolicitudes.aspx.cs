@@ -407,9 +407,11 @@ namespace WorkflowSolicitudes.Presentacion
             doc.AddTitle("Detalle de la Solicitud");
             doc.AddCreator("Workflow Solicitudes CIISA");
 
+            string ruta = Server.MapPath("/") + "/imagenes/logoCiisaPDF.jpg";
             
+
             doc.Open();
-            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(@"C:\logoCiisaPDF.jpg");
+            iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(@ruta);
             imagen.BorderWidth = 0;
             imagen.Alignment = Element.ALIGN_LEFT;
             float percentage = 0.0f;
@@ -418,7 +420,6 @@ namespace WorkflowSolicitudes.Presentacion
             doc.Add(imagen);
             
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-
             lstSolicitud = NegSolicitudes.ObtenerSolicitudesByFolio(intFolioSolicitud);
 
             foreach (Solicitud Solicitudes in lstSolicitud)

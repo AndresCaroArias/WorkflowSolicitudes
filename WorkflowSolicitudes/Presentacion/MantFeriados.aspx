@@ -50,8 +50,8 @@
 <div class ="span6">
     <asp:GridView ID="grvFeriado" 
     runat="server"
-    AutoGenerateColumns="false" 
-    AllowPaging  = "true"
+    AutoGenerateColumns="False" 
+    AllowPaging  = "True"
     BackColor="White" 
     BorderColor="#999999"  
     BorderStyle="Solid" 
@@ -59,8 +59,7 @@
     CellPadding="5" 
     ForeColor="Black"  
     GridLines="Vertical"  
-    DataKeyNames="intCodFeriado" 
-    PageSize="10" 
+    DataKeyNames="intCodFeriado,strDescFeriado,dtmFechaFeriado" 
 	onpageindexchanging="grvFeriado_PageIndexChanging" 
     onrowcancelingedit="grvFeriado_RowCancelingEdit" 
     onrowdeleting="grvFeriado_RowDeleting" 
@@ -73,13 +72,13 @@
 
     <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-                <asp:CommandField ButtonType="Image" EditImageUrl="~/imagenes/editar.gif" 
-                    ShowEditButton="True" />
+                <asp:CommandField ButtonType="Image" SelectImageUrl="~/imagenes/editar.gif" ShowSelectButton="True" ShowCancelButton="False" />
+            
                 <asp:CommandField ButtonType="Image" DeleteImageUrl="~/imagenes/eliminar.gif" 
                     ShowDeleteButton="True" />
 
 
-            <asp:TemplateField HeaderText="Codigo">
+            <asp:TemplateField HeaderText="Codigo" Visible="False">
 
             <ItemTemplate>
             <asp:Label ID="lblCodFeriado" runat="server" Text='<%#Bind("intCodFeriado") %>'/>

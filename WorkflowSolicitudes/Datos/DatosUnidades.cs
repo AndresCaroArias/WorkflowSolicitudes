@@ -75,7 +75,7 @@ namespace WorkflowSolicitudes.Datos
                             LstUnidades.Add(
                                 new Unidades((int)dr["CODUNIDAD"],
                                     (string)dr["DESCUNIDAD"],
-                                     (int)dr["ESTADOUNIDAD"]
+                                     (string)dr["ESTADOUNIDAD"]
                                     ));
                         }
                     }
