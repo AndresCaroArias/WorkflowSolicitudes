@@ -44,6 +44,8 @@ namespace WorkflowSolicitudes.Entidades
             this.intDuracion = intDuracion;
         }
 
+        
+
         #endregion
 
         #region Encapsulamiento

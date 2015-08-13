@@ -96,6 +96,7 @@ namespace WorkflowSolicitudes
                         NegAct.ActualizarActividad(intCodActividad, txtDescripcion.Text, int.Parse(txtDuracion.Text), intEstadoActividad);
                        LoadGrid();
                        ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Se actualizo correctamente');</script>");
+                       gblAccion = String.Empty;
                     }
                     else
                     {

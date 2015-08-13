@@ -103,7 +103,7 @@ namespace WorkflowSolicitudes.Presentacion
                 Session["strRutUsuario"] = strRutUsuario;
                 Session["intCodRoUser"] = intCodRoUser;
                 NegAuditoria InsertarLog = new NegAuditoria();
-                InsertarLog.InsertaAuditoria(strRutUsuario, "LOGIN", "INGRESO DEL SISTEMA", "INGRESA AL SISTEMA COMO" + strRutUsuario);
+                InsertarLog.InsertaAuditoria(strRutUsuario, "LOGIN", "INGRESO DEL SISTEMA", "INGRESA AL SISTEMA COMO " + strRutUsuario);
                 Response.Redirect("Default.aspx");
 
 

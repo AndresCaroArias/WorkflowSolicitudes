@@ -64,7 +64,7 @@
         DataKeyNames="intCodUnidad, strDescripcionUnidad, strEstadoUnidad" 
         onselectedindexchanged="grvUnidad_SelectedIndexChanged"
         emptydatatext="No existen datos para la consulta realizada" 
-        Font-Bold="False">
+        Font-Bold="False" PageSize="15" Width="686px">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
             <AlternatingRowStyle BackColor="#CCCCCC" />

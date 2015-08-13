@@ -24,6 +24,7 @@ namespace WorkflowSolicitudes
            
             if (!IsPostBack)
             {
+                gblAccion = String.Empty;
                 intCodRoUser = Convert.ToInt32(Session["intCodRoUser"]);
                 Funciones ExisteAcceso = new Funciones();
 
@@ -116,35 +117,7 @@ namespace WorkflowSolicitudes
 
         protected void grvPrivilegios_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            //int id = (int)grvPrivilegios.DataKeys[e.RowIndex].Values[0];
-            //GridViewRow Fila = grvPrivilegios.Rows[e.RowIndex];
-            //int intEstadoPrivilegios;
-
-            //System.Web.UI.WebControls.TextBox EditDescripcionPrivilegios = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditDescPrivilegios");
-            //string descripcion = EditDescripcionPrivilegios.Text;
-
-            //System.Web.UI.WebControls.TextBox EditNombrePrivi = (System.Web.UI.WebControls.TextBox)Fila.FindControl("txtEditNomPrivilegios");
-            //string nombre = EditNombrePrivi.Text;
-
-            //System.Web.UI.WebControls.CheckBox EditEstadoPrvilegio = (System.Web.UI.WebControls.CheckBox)Fila.FindControl("chkEditEstadoPrvilegio");
-            ////CheckBox estado = EditEstadoPrvilegio.Checked;
-
-
-
-            //if (EditEstadoPrvilegio.Checked)
-            //{
-            //    intEstadoPrivilegios = 1;
-            //}
-            //else
-            //{
-            //    intEstadoPrivilegios = 0;
-            //}
-
-            //(new NegPrivilegios()).ActualizarPrivilegios(id, descripcion, nombre, intEstadoPrivilegios);
-
-            //grvPrivilegios.EditIndex = -1;
-            //LoadGrid();
-        
+            
         }
 
         protected void grvPrivilegios_RowEditing(object sender, GridViewEditEventArgs e)
@@ -188,41 +161,52 @@ namespace WorkflowSolicitudes
                  intEstadoPrivilegios = 0;
              }
 
-             NegPrivilegios NegocioPrivilegios = new NegPrivilegios();
+            
 
-             int intExistePrivi;
-
-             intExistePrivi = NegocioPrivilegios.select_ExistePrivi_Privi(txtDescripcionPrivilegios.Text);
-
-
-             if (!intExistePrivi.Equals(0))
-             {
-                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Privilegio ya existe');</script>");
-                                
-                 txtDescripcionPrivilegios.Text = String.Empty;
-                 return;
-             }
-
-             int intExisteNomPrivi;
-             intExisteNomPrivi = NegocioPrivilegios.select_ExistePrivi_NomPrivi(TxtNombre.Text);
-
-
-             if (!intExisteNomPrivi.Equals(0))
-             {
-                 ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Nombre ya existe');</script>");
-                                  
-                 TxtNombre.Text = String.Empty;
-                 return;
-             }
 
              if (gblAccion.Equals("Actualizar"))
              {
                  NegocioPrivi.ActualizarPrivilegios(intCodPrivilegios, txtDescripcionPrivilegios.Text, TxtNombre.Text, intEstadoPrivilegios);
+                 gblAccion = String.Empty;
              }
              else
              {
+
+                 NegPrivilegios NegocioPrivilegios = new NegPrivilegios();
+
+                 int intExistePrivi;
+
+                 intExistePrivi = NegocioPrivilegios.select_ExistePrivi_Privi(txtDescripcionPrivilegios.Text);
+
+
+                 if (!intExistePrivi.Equals(0))
+                 {
+                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Privilegio ya existe');</script>");
+
+                     txtDescripcionPrivilegios.Text = String.Empty;
+                     return;
+                 }
+
+                 int intExisteNomPrivi;
+                 intExisteNomPrivi = NegocioPrivilegios.select_ExistePrivi_NomPrivi(TxtNombre.Text);
+
+
+                 if (!intExisteNomPrivi.Equals(0))
+                 {
+                     ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR: Nombre ya existe');</script>");
+
+                     TxtNombre.Text = String.Empty;
+                     return;
+                 }
+                 
+                 
+                 
+                 
+                 
                  NegocioPrivi.AltaPrivilegios(txtDescripcionPrivilegios.Text, TxtNombre.Text, intEstadoPrivilegios);
              }
+             ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Grabación Exitosa');</script>");
+
             LoadGrid();
             }
         }

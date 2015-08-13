@@ -152,6 +152,37 @@ namespace WorkflowSolicitudes.Datos
             return LstActividad;
         }
 
+
+        public List<Actividad> select_All_E_Actividad_Activas()
+        {
+            List<Actividad> LstActividad = new List<Actividad>();
+
+            string StoredProcedure = "sp_Get_ConsultaByActivas_Actividad";
+            using (DbConnection con = Conexion.dpf.CreateConnection())
+            {
+                con.ConnectionString = Conexion.constr;
+                using (DbCommand cmd = Conexion.dpf.CreateCommand())
+                {
+                    cmd.Connection = con;
+                    cmd.CommandText = StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    con.Open();
+                    using (DbDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            LstActividad.Add(
+                                new Actividad((int)dr["CODACTIVIDAD"],
+                                    (string)dr["DESCRIPCION"],
+                                    (int)dr["DURACION"],
+                                    (int)dr["ESTADOACTIVIDAD"]));
+                        }
+                    }
+                }
+            }
+            return LstActividad;
+        }
+
         public int select_ExiteActividad_Flujo(int intCodActividad)
         {
 

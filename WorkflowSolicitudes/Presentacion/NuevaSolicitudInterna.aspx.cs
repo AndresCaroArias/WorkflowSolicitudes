@@ -127,7 +127,9 @@ namespace WorkflowSolicitudes.Presentacion
 
             List<Solicitud> LstSolicitud = new List<Solicitud>();
             LstSolicitud = InsertaSolicitud.Insertar_Solicitud(intCodTipoSolicitud, strRutAlumno, strCodCarrera, txtCelularContacto, strCorreo, txtpeticion.Text, "I");
-            
+            NegAuditoria InsertarLog = new NegAuditoria();
+            InsertarLog.InsertaAuditoria(strRutUsuario, "NUEVA SOLICITUD INTERNA", "CREA UNA NUEVA SOLICITUD ", "EL USUARIO CREA UNA NUEVA SOLICITUD " + ddlTipoSolicitud.SelectedItem);
+
 
           
             ddlTipoSolicitud.SelectedIndex = -1;
@@ -177,9 +179,7 @@ namespace WorkflowSolicitudes.Presentacion
                 ImgFile.InputStream.Read(byteImage, 0, ImagenFile.PostedFile.ContentLength);
 
                 string Aux = strNombreArchivo.ToUpper();
-
                 int intExistePdf = Aux.IndexOf(".PDF");
-
 
                 if (intExistePdf.Equals(-1))
                 {

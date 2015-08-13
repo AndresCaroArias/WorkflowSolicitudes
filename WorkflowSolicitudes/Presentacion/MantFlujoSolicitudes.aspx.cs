@@ -34,7 +34,7 @@ namespace WorkflowSolicitudes
 
             if (!Page.IsPostBack)
             {
-         
+                StrRutUsuario = Convert.ToString(Session["strRutUsuario"]);
                 lee_ComboTipoSolicitud();
                 lee_ComboUnidad();
                 lee_ComboActividades();
@@ -86,7 +86,7 @@ namespace WorkflowSolicitudes
         private void lee_ComboActividades()
         {
             NegActividad NegActividades = new NegActividad();
-            ddlActividades.DataSource = NegActividades.ObtenerActividad();
+            ddlActividades.DataSource = NegActividades.ObtenerActividades_Activas();
             ddlActividades.DataTextField = "strDescripActividad";
             ddlActividades.DataValueField = "intCodActividad";
             ddlActividades.DataBind();
@@ -183,15 +183,6 @@ namespace WorkflowSolicitudes
             }
 
 
-            //if (strBifurcacaion.Equals("Si"))
-            //{
-            //    ChkBifurcacion.Checked = true;
-            //}
-            //else
-            //{
-            //    ChkBifurcacion.Checked = false;
-            //}
-
             txtSecuencia.Text = Convert.ToString(intSecuencia);
             BtnEliminar.Visible = true;
             gblAccion = "Actualizar";
@@ -210,6 +201,7 @@ namespace WorkflowSolicitudes
             lblMensaje.Text = String.Empty;
 
             NegSolicitud NegSolicitud = new NegSolicitud();
+            NegAuditoria InsertarLog = new NegAuditoria();
             intExiste = NegSolicitud.HayProcesoEjecutandoSe(intCodTipoSolicitud);
 
             if (!intExiste.Equals(0))
@@ -277,13 +269,14 @@ namespace WorkflowSolicitudes
 
             if (gblAccion == "Insertar")
             {
-
                 NegFlujoSolicitudes.Insertarflujo(intSecuencia, intCodTipoSolicitud, intCodActividad, intCodUnidad, intAprobador, intBifurcacion, strSecuenciaSI, strSecuenciaNO);
+                InsertarLog.InsertaAuditoria(StrRutUsuario, "MANTENEDOR DE FLUJOS ", "CREACION DE NUEVO FLUJO ", "PARA EL TIPO DE SOLICITUD " + ddlTipoSolicitudes.SelectedItem);
             }
 
             else
-            {
+            {    
                 NegFlujoSolicitudes.ActualizarFlujoSolicitud(intSecuencia, intCodTipoSolicitud, intCodActividad, intCodUnidad, intAprobador, intBifurcacion, strSecuenciaSI, strSecuenciaNO);
+                InsertarLog.InsertaAuditoria(StrRutUsuario, "MANTENEDOR DE FLUJOS ", "ACTUALIZACION DE FLUJO ", "PARA EL TIPO DE SOLICITUD " + ddlTipoSolicitudes.SelectedItem);
             }
 
           

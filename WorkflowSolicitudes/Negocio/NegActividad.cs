@@ -36,6 +36,12 @@ namespace WorkflowSolicitudes.Negocio
             return DatAut.select_All_E_Actividad();
         }
 
+        public List<Actividad> ObtenerActividades_Activas()
+        {
+            DatosActividad DatAut = new DatosActividad();
+            return DatAut.select_All_E_Actividad_Activas();
+        }
+
         public int ExisteActividadDetalleSolicitud(int intCodActividad)
         {
             DatosActividad ExiteActDeta = new DatosActividad();

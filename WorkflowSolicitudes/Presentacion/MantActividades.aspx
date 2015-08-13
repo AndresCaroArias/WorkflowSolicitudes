@@ -53,7 +53,7 @@
             Font-Bold="False" 
             AllowPaging="True" 
             onselectedindexchanged="grvActividad_SelectedIndexChanged" 
-        Width="477px">
+        Width="677px" PageSize="20">
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
 
             <AlternatingRowStyle BackColor="#CCCCCC" />

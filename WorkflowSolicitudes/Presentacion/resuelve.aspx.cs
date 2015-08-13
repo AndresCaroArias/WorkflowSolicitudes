@@ -223,7 +223,7 @@ namespace WorkflowSolicitudes.Presentacion
         {
             Response.Redirect("ListaDeTareas.aspx?StrRutUsuario=" + StrRutResponsable);
             NegAuditoria InsertarLog = new NegAuditoria();
-            InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "ABANDONA LA ACTIVIDAD", "ABANDONA LA ACTIVIDAD SIN RESOLVERLA " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio);
+            InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "ABANDONA LA ACTIVIDAD", "ABANDONA LA ACTIVIDAD SIN RESOLVERLA " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio.Text);
                 
         }
 
@@ -289,7 +289,7 @@ namespace WorkflowSolicitudes.Presentacion
                 
                 if (strSecuenciaNo.Equals("0"))
                 {
-                   ResuelveActividad.CierraProceso(intFolioSolicitud, intSecuencia, intCodEstadSol, intCodEstadoAct, strGlosaDetalleSol);
+                    ResuelveActividad.CierraProceso(intFolioSolicitud, intSecuencia, intCodEstadSol, intCodEstadoAct, txtResolucion.Text);
                    InsertarLog.InsertaAuditoria(StrRutResponsable, "RESUELVE", "RESUELVE LA ACTIVIDAD ", "ACTIVIDIDAD RECHAZADA " + lblActividad.Text + "PARA EL FOLIO :" + lblFolio.Text);
                    Response.Redirect("ListaDeTareas.aspx?StrRutUsuario=" + StrRutResponsable);
                 }
