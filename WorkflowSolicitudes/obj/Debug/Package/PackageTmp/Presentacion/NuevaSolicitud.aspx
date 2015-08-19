@@ -13,17 +13,32 @@
     <link href="~/css/alertify.default.css" rel="stylesheet" type="text/css" id="toggleCSS" />
     <title>Elevación de Solicitud Alumnos</title> 
 
-   <style>
-body {
-    background: #B2E389;
+   <style type="text/css">
+    .well{
+background-color: rgb(7, 125, 28);
 }
-
+body 
+{
+background: #B2E389;
+}
+h1   {color:white}
 textbox
 {
     background: #FBFFDA;
     
     }
+    
+    
 </style>
+   <div class="container">
+        <div class ="row-fluid">
+            <div class ="span12">
+                <div class ="well">
+                    <h1 class="text-center">Sistema de Solicitudes</h1>
+                </div>
+            </div>
+         </div>
+    </div>
 
     </head>
 <body>
@@ -46,8 +61,9 @@ textbox
 <div class ="row-fluid">
 <div class ="span3"><asp:Label ID="LblCelularContacto" runat="server" style="font-weight: 700" 
                 Text="Celular de Contacto : "></asp:Label></div>
-<div class ="span3"><asp:TextBox ID="txtCelularContacto" runat="server"  Height="22px" MaxLength="10" 
-                ></asp:TextBox></div>
+<div class ="span3">
+    <asp:TextBox ID="txtCelular" runat="server"></asp:TextBox>
+    </div>
 <div class ="span3"></div>
 <div class ="span3"></div>
 </div>
@@ -169,10 +185,20 @@ textbox
 <div class ="span2"><asp:Label ID="LblMensaje" runat="server" 
                 style="font-weight: 700; color: #FF0000"></asp:Label></div>
 <div class ="span2"></div>
+
 <div class ="span2"></div>
 <div class ="span2"></div>
+   
 </div>
 
+<div class ="row-fluid">
+<div class ="span3">
+ <asp:Button ID="btnVolver" runat="server" Text= "Regresar a Solicitudes" 
+        onclick="btnVolver_Click" />
+</div>
+<div class ="span3"></div>
+<div class ="span3"></div>
+</div>
 
 
 <div class ="row-fluid">
@@ -180,21 +206,24 @@ textbox
 </div>
 
 <div class ="row-fluid">
-<div class ="span12"><asp:HyperLink ID="HyperLink1" runat="server" 
-                NavigateUrl="~/Presentacion/BandejaEntrada.aspx">Volver </asp:HyperLink></div>
+
 </div>
 
 <div class ="row-fluid">
 <div class ="span12"><asp:Label ID="lblError" runat="server" style="font-weight: 700"></asp:Label></div>
 </div>
 
-<script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
-<script src="../js/alertify.min.js" type="text/javascript"></script>
-      	
+
+   <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
+    <script src="../js/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="../js/alertify.min.js" type="text/javascript"></script>
+
+
 
 	<script>
 	    function reset() {
-	        $("#toggleCSS").attr("href", "../css/alertify.default.css");
+	        $("#toggleCSS").attr("href", "~/css/alertify.default.css");
 	        alertify.set({
 	            labels: {
 	                ok: "OK",
@@ -338,7 +367,7 @@ textbox
 	    // Custom Themes
 	    $("#bootstrap").on('click', function () {
 	        reset();
-	        $("#toggleCSS").attr("href", "../css/alertify.bootstrap.css");
+	        $("#toggleCSS").attr("href", "~/css/alertify.bootstrap.css");
 	        alertify.prompt("Prompt dialog with bootstrap theme", function (e) {
 	            if (e) {
 	                alertify.success("You've clicked OK");
@@ -354,7 +383,7 @@ textbox
 </div>
   
     
-    </form>
+</form>
 
 </body>
 </html>

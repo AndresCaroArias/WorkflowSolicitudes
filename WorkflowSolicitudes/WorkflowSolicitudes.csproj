@@ -68,6 +68,8 @@
     <Content Include="css\jquery-ui.css" />
     <Content Include="css\style.css" />
     <Content Include="imagenes\calendario.jpg" />
+    <Content Include="imagenes\LogoFondoVerde - copia.jpg" />
+    <Content Include="imagenes\LogoFondoVerde.jpg" />
     <Content Include="imagenes\LogoRelieve.jpg" />
     <Content Include="imagenes\LogOut.jpg" />
     <Content Include="imagenes\nuevousuario.jpg" />
@@ -458,7 +460,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2949</DevelopmentServerPort>
+          <DevelopmentServerPort>31966</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -86,7 +86,7 @@ textbox
 
 
         <li class="dropdown">
-    <a href="../Presentacion/Administracion.aspx" class="dropdown-toggle" data-toggle="dropdown">Administración <span class="caret"></span></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <span class="caret"></span></a>
     <ul class="dropdown-menu">
     <li><a href="../Presentacion/MantTipoSolicitudes.aspx">Mantenedor de Tipo de Solicitudes</a></li>
     <li><a href="../Presentacion/MantActividades.aspx">Mantenedor de Actividades</a></li>

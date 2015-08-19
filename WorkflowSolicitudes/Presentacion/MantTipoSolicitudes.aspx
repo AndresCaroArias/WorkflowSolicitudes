@@ -36,7 +36,8 @@
 
 <div class ="row-fluid">
 <div class ="span4"><p class="text-left">Cantidad de Solicitudes:</p></div>
-<div class ="span4"><asp:TextBox ID="txtCantidadSol" runat="server" MaxLength="2" Height="22px" Width="45px"/></div>
+<div class ="span4"><asp:TextBox ID="txtCantidadSol" runat="server" MaxLength="2" 
+        Height="22px" Width="50px" ontextchanged="txtCantidadSol_TextChanged"/></div>
 <div class ="span4"></div>
 </div>
 
@@ -59,7 +60,7 @@
 
 <div class ="row-fluid">
 <div class ="span4"><p class="text-left">Cantidad de documentos:</p></div>
-<div class ="span4"><asp:TextBox ID="txtCantMaxDoc" runat="server" Height="22px" Width="46px"></asp:TextBox>
+<div class ="span4"><asp:TextBox ID="txtCantMaxDoc" runat="server" MaxLength="4" Height="22px" Width="50px"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
                         ControlToValidate="txtCantMaxDoc" ErrorMessage="Solo ingresar numeros " 
                         ValidationExpression="\d+" style="color: #FF0000; font-weight: 700"> </asp:RegularExpressionValidator></div>

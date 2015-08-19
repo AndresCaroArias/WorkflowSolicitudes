@@ -111,7 +111,7 @@ h1   {color:white}
                 BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
                 CellPadding="3" GridLines="Vertical" ForeColor="Black" 
                 emptydatatext="No existen datos para la consulta realizada" 
-                Font-Bold="False" Width="935px" Height="82px">
+                Font-Bold="False" Width="974px" Height="82px">
 
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
                 <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -120,14 +120,14 @@ h1   {color:white}
                         SortExpression="intFolioSolicitudes" />
                     <asp:BoundField DataField="intEtapa" HeaderText="Etapa" 
                         SortExpression="intEtapa" />
-                    <asp:BoundField DataField="intSecuencia" HeaderText="Secuencia" 
-                        SortExpression="intSecuencia" />
                     <asp:BoundField DataField="strGlosaActividad" HeaderText="Actividad" 
                         SortExpression="strGlosaActividad" />
                     <asp:BoundField DataField="strDescUnidad" HeaderText="Unidad Responsable" 
                         SortExpression="strDescUnidad" />
                     <asp:BoundField DataField="strnombre" HeaderText="Persona asignada" 
                         SortExpression="strnombre" />
+                    <asp:BoundField DataField="StrGlosaDetalleSolictud" 
+                        HeaderText="Observación Actividad" SortExpression="StrGlosaDetalleSolictud" />
                     <asp:BoundField DataField="dtmFechaVencSol" HeaderText="Fecha Vencimiento" 
                         SortExpression="dtmFechaVencSol" />
                     <asp:BoundField DataField="intDiasDeRetraso" HeaderText="Dias de Atraso" 
@@ -148,11 +148,11 @@ h1   {color:white}
             <br />
             <br />
             <br />
-            <asp:HyperLink ID="HyperLink1" runat="server" 
-                NavigateUrl="~/Presentacion/BandejaEntrada.aspx" ForeColor="Black" >Volver</asp:HyperLink>
-              
+                <asp:Button ID="btnVolver" runat="server" Text="Regresar a Solicitudes" 
+                            onclick="btnVolver_Click" />
         
          </div>
+                    
                 </div>
 
             

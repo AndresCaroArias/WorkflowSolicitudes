@@ -74,10 +74,10 @@
 
 <div class ="row-fluid">
 <div class ="span1">Si 
-    <asp:TextBox ID="txtSecuenciaSi" runat="server" Width="25px"></asp:TextBox>
+    <asp:TextBox ID="txtSecuenciaSi" runat="server" MaxLength="4" Width="25px"></asp:TextBox>
     </div>
  <div class ="span1">No
-    <asp:TextBox ID="txtSecuenciaNo" runat="server" Width="25px"></asp:TextBox>
+    <asp:TextBox ID="txtSecuenciaNo" runat="server" MaxLength="4" Width="25px"></asp:TextBox>
     </div>
 
 

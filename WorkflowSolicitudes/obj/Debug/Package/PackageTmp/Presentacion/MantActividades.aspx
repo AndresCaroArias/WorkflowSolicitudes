@@ -21,8 +21,14 @@
 
 <div class ="row-fluid">
 <div class ="span4"><p class="text-left">Duración:</p></div>
-<div class ="span4"><asp:TextBox ID="txtDuracion" runat="server" height="22px"></asp:TextBox></div>
+<div class ="span4"><asp:TextBox ID="txtDuracion" runat="server" MaxLength="4" height="22px" Width="50px"></asp:TextBox></div>
 <div class ="span4"><asp:ImageButton ID="btnInsertar" runat="server" ImageUrl="~/imagenes/boton.guardar.gif" onclick="btnInsertar_Click" /></div>
+</div>
+
+<div class ="row-fluid">
+<div class ="span4"><asp:Label ID="lblEstadoActividad" runat="server" style="font-weight: 700" Text="Estado"></asp:Label></div>
+<div class ="span4"><asp:CheckBox ID="chkEstadoActividad" runat="server" Text="Esta Activo...??" /></div>
+<div class ="span4"><asp:Label ID="lblMensaje" runat="server" style="font-weight: 700; color: #FF0000"></asp:Label></div>
 </div>
 
 <div class ="row-fluid">
@@ -41,12 +47,13 @@
             onrowdeleting="grvActividad_RowDeleting" 
             onrowediting="grvActividad_RowEditing" 
             onrowupdating="grvActividad_RowUpdating" 
-            DataKeyNames="intCodActividad, strDescripActividad, intDuracion" 
+            DataKeyNames="intCodActividad, strDescripActividad, intDuracion,strEstadoActividad" 
             onrowcancelingedit="grvActividad_RowCancelingEdit"
             emptydatatext="No existen datos en la Grilla" 
             Font-Bold="False" 
             AllowPaging="True" 
-            onselectedindexchanged="grvActividad_SelectedIndexChanged">
+            onselectedindexchanged="grvActividad_SelectedIndexChanged" 
+        Width="677px" PageSize="20">
             <emptydatarowstyle backcolor="#B2E389" forecolor="Red"/>
 
             <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -80,11 +87,26 @@
             <asp:Label ID="lblDuracion" runat="server" Text='<%#Bind("intDuracion") %>'/>
             </ItemTemplate>
 
-            
             <EditItemTemplate>
             <asp:TextBox ID="txtEditDuracion" runat="server" Text='<%#Bind("intDuracion") %>'/>
             </EditItemTemplate>
+
+
             </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Estado">
+                        
+            <ItemTemplate>
+            <asp:Label ID="lblDEstado" runat="server" Text='<%#Bind("strEstadoActividad") %>'/>
+            </ItemTemplate>
+
+            <EditItemTemplate>
+            <asp:TextBox ID="txtEditEstadoRol" runat="server" Text='<%#Bind("strEstadoActividad") %>'/>
+            </EditItemTemplate>
+
+            </asp:TemplateField>
+
+
             </Columns>
             <FooterStyle BackColor="#CCCCCC" />
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

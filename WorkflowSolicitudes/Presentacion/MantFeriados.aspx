@@ -25,8 +25,9 @@
 
 <div class ="row-fluid">
 <div class ="span4"><p class="text-left">Fecha:</p></div>
-<div class ="span4"><asp:TextBox ID="txtFechasFeriados" runat="server" height="22px" Width="71px" MaxLength="10" 
-                        Enabled="False" TextMode="DateTime"></asp:TextBox>
+<div class ="span4"><asp:TextBox ID="txtFechasFeriados" runat="server" 
+        height="22px" Width="105px" MaxLength="10" 
+                        Enabled="False"></asp:TextBox>
                     &nbsp;<asp:ImageButton ID="imbFeriado" runat="server" Height="24px" ImageUrl="~/imagenes/calendario.gif" Width="28px" 
                     onclick="imbFeriado_Click1" /></div>
 <div class ="span4"></div>

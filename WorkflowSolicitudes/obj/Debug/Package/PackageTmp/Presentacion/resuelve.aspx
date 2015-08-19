@@ -155,7 +155,10 @@
 </div>
 
 <div class ="row-fluid"><asp:Panel ID="Panel2" runat="server">
-<div class ="span4"><asp:Label ID="lblAprobar" runat="server" style="font-weight: 700">Usted desea Aprobar(Si) o Rechazar(No) la Actividad?</asp:Label></div>
+<div class ="span4"><asp:Label ID="lblAprobar" runat="server" style="font-weight: 700">Usted desea Aprobar(Si) o Rechazar(No)? La Actividad :</asp:Label>
+    &nbsp;&nbsp;<asp:Label ID="lblActividadResolver" runat="server" 
+        Font-Bold="True" Font-Size="Large" ForeColor="#339933"></asp:Label>
+    </div>
 <div class ="span4"><asp:RadioButton ID="RbtSI" runat="server" GroupName="Resolver" Text="Si" 
                     style="text-align: center" />
                                
@@ -176,8 +179,8 @@
 
 <div class ="row-fluid">
 <div class ="span12"> 
-    <asp:TextBox ID="txtResolucion" runat="server" Height="75px" 
-        TextMode="MultiLine" Width="910px" 
+    <asp:TextBox ID="txtResolucion" runat="server" Height="90px" 
+        TextMode="MultiLine" Width="1028px" 
         style="margin-left: 3px; margin-top: 0px"></asp:TextBox></div>
 </div>
 
@@ -275,4 +278,5 @@
     
     </form>
 
+    </div>
 </asp:Content>

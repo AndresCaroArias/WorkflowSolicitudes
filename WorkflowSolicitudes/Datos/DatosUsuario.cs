@@ -121,7 +121,6 @@ namespace WorkflowSolicitudes.Datos
                             LstUsuarios.Add(
                                 new Usuario((string)dr["RUTUSUARIO"],
                                     (int)dr["CODROL"],
-                                    (string)dr["PASSWORD"],
                                     (string)dr["NOMBRE"],
                                     (string)dr["APELLIDO"],
                                     (string)dr["EMAILUSUARIO"],

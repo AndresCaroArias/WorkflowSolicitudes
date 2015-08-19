@@ -21,7 +21,7 @@
 
 <div class ="row-fluid">
 <div class ="span4"><p class="text-left">Duración:</p></div>
-<div class ="span4"><asp:TextBox ID="txtDuracion" runat="server" height="22px"></asp:TextBox></div>
+<div class ="span4"><asp:TextBox ID="txtDuracion" runat="server" MaxLength="4" height="22px" Width="50px"></asp:TextBox></div>
 <div class ="span4"><asp:ImageButton ID="btnInsertar" runat="server" ImageUrl="~/imagenes/boton.guardar.gif" onclick="btnInsertar_Click" /></div>
 </div>
 

@@ -49,13 +49,13 @@ namespace WorkflowSolicitudes.Presentacion {
         protected global::System.Web.UI.WebControls.Label LblCelularContacto;
         
         /// <summary>
-        /// Control txtCelularContacto.
+        /// Control txtCelular.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCelularContacto;
+        protected global::System.Web.UI.WebControls.TextBox txtCelular;
         
         /// <summary>
         /// Control lnlCorreoElectronico.
@@ -175,13 +175,13 @@ namespace WorkflowSolicitudes.Presentacion {
         protected global::System.Web.UI.WebControls.Label LblMensaje;
         
         /// <summary>
-        /// Control HyperLink1.
+        /// Control btnVolver.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Button btnVolver;
         
         /// <summary>
         /// Control lblError.

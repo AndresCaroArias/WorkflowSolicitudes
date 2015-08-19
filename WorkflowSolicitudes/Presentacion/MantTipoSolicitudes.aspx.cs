@@ -368,6 +368,11 @@ namespace WorkflowSolicitudes
             txtCantMaxDoc.Text = String.Empty;
         }
 
+        protected void txtCantidadSol_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
             
               
     }

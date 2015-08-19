@@ -61,6 +61,22 @@ namespace WorkflowSolicitudes.Entidades
             this.strNombreDepende = strNombreDepende;
         }
 
+        public Usuario(string strRutUsuario, int intCodRol, string strNombre, string strApellido, string strEmailUsuario, string strEstadoUsuario, int intCodUnidad, string strDepende, string strDescripcion, string strDescUnidad, string strTelefono, string strNombreDepende)
+        {
+            this.strRutUsuario = strRutUsuario;
+            this.intCodRol = intCodRol;
+            this.strNombre = strNombre;
+            this.strApellido = strApellido;
+            this.strEmailUsuario = strEmailUsuario;
+            this.strEstadoUsuario = strEstadoUsuario;
+            this.intCodUnidad = intCodUnidad;
+            this.strDepende = strDepende;
+            this.strDescripcion = strDescripcion;
+            this.strDescUnidad = strDescUnidad;
+            this.strTelefono = strTelefono;
+            this.strNombreDepende = strNombreDepende;
+        }
+
         public Usuario(string strRutUsuario, string strPassword, string strNombre, string strApellido, int intCodRol,int intCodUnidad, string strEmailUsuario,int intEstadoUsuario)
         {
             this.strRutUsuario = strRutUsuario;

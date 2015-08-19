@@ -58,22 +58,13 @@ namespace WorkflowSolicitudes.Presentacion {
         protected global::System.Web.UI.WebControls.Label LblJornada;
         
         /// <summary>
-        /// Control lnkNuevaSolicitud.
+        /// Control btnNuevaSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkNuevaSolicitud;
-        
-        /// <summary>
-        /// Control lblMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.Button btnNuevaSolicitud;
         
         /// <summary>
         /// Control GridView1.

@@ -16,11 +16,14 @@
 
 
 <div class ="row-fluid">
-<div class ="span12"><asp:Label ID="lblAcceso" runat="server" style="font-size: small"></asp:Label></div>
+<div class ="span12"><asp:Label ID="lblAcceso" runat="server" style="font-size: small"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </div>
 </div>
 
 <div class ="row-fluid">
 <div class ="span12"><asp:Label ID="lblMensaje" runat="server"></asp:Label>
+        <br />
+    <asp:Label ID="lblDescUnidad" runat="server"></asp:Label>
+    <br />
         <br />
         <asp:GridView ID="GrvListaTareas" runat="server" AllowPaging="True" 
             AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" 

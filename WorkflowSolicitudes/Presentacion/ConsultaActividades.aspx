@@ -18,7 +18,7 @@
 
 <div class ="span4"><p class="text-left">Tipo Solicitud:</p></div>
 
-<div class ="span4"><asp:DropDownList ID="ddlTipoSolicitud" runat="server" Height="22px">
+<div class ="span4"><asp:DropDownList ID="ddlTipoSolicitud" runat="server" Width="300px" Height="22px">
                 </asp:DropDownList></div>
 
 <div class ="span4"></div>
@@ -29,7 +29,7 @@
 <div class ="span4"><p class="text-left">Tipo Actividad:</p>
 </div>
 
-<div class ="span4"><asp:DropDownList ID="ddlTipoActividad" runat="server" Height="22px"></asp:DropDownList>
+<div class ="span4"><asp:DropDownList ID="ddlTipoActividad" runat="server" Width="300px" Height="22px"></asp:DropDownList>
 </div>
 <div class ="span4">
 </div>
@@ -37,18 +37,15 @@
 <div class ="row-fluid">
 <div class ="span4"><p class="text-left">Unidades:</p></div>
 
-<div class ="span4"><asp:DropDownList ID="ddlUnidad" runat="server" Width="95px" Height="22px"></asp:DropDownList></div>
+<div class ="span4"><asp:DropDownList ID="ddlUnidad" runat="server" Width="300px" Height="22px"></asp:DropDownList></div>
 <div class ="span4"></div>
 </div>
 
 
 <div class ="row-fluid">
-<div class ="span3"><p class="text-left">Estado:</p></div>
-<div class ="span3"><asp:DropDownList ID="ddlEstado" runat="server" Width="95px" Height="22px">
-                </asp:DropDownList></div>
-<div class ="span3"><asp:ImageButton ID="btnBuscar" runat="server" 
-                    ImageUrl="~/imagenes/icono_buscar.gif" onclick="btnBuscar_Click" /></div>
-<div class ="span3"><asp:Label ID="lblError" runat="server" style="color: #CC0000; background-color: #CCCCCC"></asp:Label></div>
+<div class ="span4"><p class="text-left">Estado:</p></div>
+<div class ="span4"><asp:DropDownList ID="ddlEstado" runat="server" Width="300px" Height="22px"></asp:DropDownList></div>
+<div class ="span4"><asp:Label ID="lblError" runat="server" style="color: #CC0000; background-color: #CCCCCC"></asp:Label></div>
 </div>
 
 <div class ="row-fluid">
@@ -178,6 +175,10 @@
                     <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
                     <WeekendDayStyle BackColor="#CCCCFF" />
                 </asp:Calendar></div>
+</div>
+
+<div class ="row-fluid">
+<div class ="span12"><asp:ImageButton ID="btnBuscar" runat="server" ImageUrl="~/imagenes/icono_buscar.gif" onclick="btnBuscar_Click"/></div>
 </div>
 
 <div class ="row-fluid">

@@ -21,32 +21,69 @@ namespace WorkflowSolicitudes.Presentacion
         public static int intFolioSolicitud { get; set; }
         public static DateTime dtmFechaVencSol { get; set; }
         public static int intSecuencia { get; set; }
+        public static String  strSession { get; set; }
+           
         public static List<Adjuntos> LstAdjuntos = new List<Adjuntos>();
         
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            String dummy;
-           
             
             StrRutAlumno = Convert.ToString(Session["StrRutAlumno"]);
             StrCodCarrera = Convert.ToString(Session["StrCodCarrera"]);
 
             if (!Page.IsPostBack)
             {
-                intContador = 0;
-                lee_ComboTipoSolicitud();
+
+                txtCelular.Text = String.Empty;
+                txtCorreo.Text = String.Empty;
 
                 Funciones FuncionesDesencriptar = new Funciones();
+                string strOrigen = Request.ServerVariables["HTTP_REFERER"];
+                if (strOrigen.Equals("http://10.0.0.68/Workflow/Presentacion/BandejaEntrada.aspx"))
+                {
+                    
 
-                if (!(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"]))).Equals("Error_Autorizacion"))
-                    dummy = Convert.ToString(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"])));
+                    if (!(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"]))).Equals("Error_Autorizacion"))
+                        {
+                            strSession = Convert.ToString(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"])));
+                        }
+                    else
+                        {
+                            string Error = HttpUtility.UrlEncode(FuncionesDesencriptar.Encrypt("Error_Autorizacion"));
+                            Response.Redirect("PageErrorE.aspx?TypeError=" + Error);
+                        }
+
+                    if (!strSession.Equals(StrRutAlumno))
+                        {
+                            string Error = HttpUtility.UrlEncode(FuncionesDesencriptar.Encrypt("Error_Autorizacion"));
+                            Response.Redirect("PageErrorE.aspx?TypeError=" + Error);   
+                        }
+                    else
+                        {
+                            // Sin Accion
+                        }
+
+                }
                 else
                 {
-                    string Error = HttpUtility.UrlEncode(FuncionesDesencriptar.Encrypt("Error_Autorizacion"));
-                    Response.Redirect("PageErrorE.aspx?TypeError=" + Error);
-                }
+
+                   strSession = Convert.ToString(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"])));
+                    if (!strSession.Equals(StrRutAlumno))
+                    {
+                        string Error = HttpUtility.UrlEncode(FuncionesDesencriptar.Encrypt("Error_Autorizacion"));
+                        Response.Redirect("PageErrorE.aspx?TypeError=" + Error);
+                    }
+                    else
+                    {
+                        // Sin Accion
+                    }
+                } 
+
+                intContador = 0;
+                lee_ComboTipoSolicitud(); 
+
             }
 
         
@@ -66,28 +103,29 @@ namespace WorkflowSolicitudes.Presentacion
          protected void BtnEnviar_Click(object sender, EventArgs e)
          {
              NegSolicitud InsertaSolicitud = new NegSolicitud();
-
+    
              if (ddlTipoSolicitud.SelectedIndex.Equals(0)) 
              {
                  ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Debe Seleccionar un tipo de Solicitud');</script>");
                  return;  
              }
 
-             if (txtCelularContacto.Equals(String.Empty))
+             if (txtCelular.Text =="")
              {
                  ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Debe ingresar número de contacto');</script>");
                  return;
              }
 
+             
 
 
-             if (txtCorreo.Equals(String.Empty))
+             if (txtCorreo.Text == "")
              {
                  ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Debe ingresar un correo electronico de contacto');</script>");
                  return;
              }
 
-             if (Txtpeticion.Equals(String.Empty))
+             if (Txtpeticion.Text == "")
              {
                  ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Debe ingresar una petición');</script>");
                  return;
@@ -109,11 +147,11 @@ namespace WorkflowSolicitudes.Presentacion
 
 
              List<Solicitud> LstSolicitud = new List<Solicitud>();
-             LstSolicitud = InsertaSolicitud.Insertar_Solicitud(intCodTipoSolicitud, StrRutAlumno, StrCodCarrera, txtCelularContacto.Text, txtCorreo.Text, Txtpeticion.Text, "E");
-            
+             LstSolicitud = InsertaSolicitud.Insertar_Solicitud(intCodTipoSolicitud, StrRutAlumno, StrCodCarrera, txtCelular.Text, txtCorreo.Text, Txtpeticion.Text, "E");
 
 
-             txtCelularContacto.Text = String.Empty;
+
+             txtCelular.Text = String.Empty;
              txtCorreo.Text = String.Empty;
              Txtpeticion.Text = String.Empty;
              ddlTipoSolicitud.SelectedIndex = -1;
@@ -148,7 +186,7 @@ namespace WorkflowSolicitudes.Presentacion
          protected void BtnLimpiar_Click(object sender, EventArgs e)
          {
 
-             txtCelularContacto.Text = String.Empty;
+             txtCelular.Text = String.Empty;
              txtCorreo.Text = String.Empty;
              Txtpeticion.Text = String.Empty;
              ddlTipoSolicitud.SelectedIndex = -1;
@@ -270,7 +308,11 @@ namespace WorkflowSolicitudes.Presentacion
              grvAdjunto.DataSource = LstAdjuntos;
              grvAdjunto.DataBind();
              NegTipoSolicitud CantMaxDocumentos = new NegTipoSolicitud();
+
+             
+             
              int intCodTipoSolicitud = Convert.ToInt32(ddlTipoSolicitud.SelectedValue);
+             
              intCantMaxDocumentos = CantMaxDocumentos.ObtenerCantMaxDocByTipoSolicitud(intCodTipoSolicitud);
          }
 
@@ -282,6 +324,14 @@ namespace WorkflowSolicitudes.Presentacion
          protected void ddlTipoSolicitud_TextChanged(object sender, EventArgs e)
          {
              Txtpeticion.Text = string.Empty;
+         }
+
+         protected void btnVolver_Click(object sender, EventArgs e)
+         {
+             Funciones FuncionesEncriptar = new Funciones();
+             string session = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt(StrRutAlumno));
+             Response.Redirect("BandejaEntrada.aspx?session=" + session);
+
          }
 
     }

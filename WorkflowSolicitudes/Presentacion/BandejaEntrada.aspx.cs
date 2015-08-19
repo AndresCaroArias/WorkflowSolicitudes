@@ -16,48 +16,68 @@ namespace WorkflowSolicitudes.Presentacion
         public static String StrRutAlumno { get; set; }
         public static String StrCodCarrera { get; set; }
         public static String StrCodCli { get; set; }
-
+        public static String strSession { get; set; }
         private static DataTable movSource;
-        private static String orden = "ASC";        
+        private static String orden = "ASC";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+           
 
-            //try
-            //{
+                if (!Page.IsPostBack)
+                {
+                   StrCodCli = "20001IECIRE004";   /// Despues borrar esta linea de codigo 
 
-                //string ref1 = Request.ServerVariables["HTTP_REFERER"];
-                //if (Request.ServerVariables["HTTP_REFERER"].Equals("http://10.0.0.2/Prueba.asp")) /// Codigo para verificar servidor de envio post
-                //{
-                    lblMensaje.Text = String.Empty;
-                    //StrCodCli = Convert.ToString(Request.Form["codcli"]); // Linea para que rescate desde U+ el CODCLI  
-                    StrCodCli = "20001IECIRE004";   /// Despues borrar esta linea de codigo 
+
+                    /// Para desarrollo comentar desde aqui
+
+                    //Funciones FuncionesDesencriptar = new Funciones();
+
+                    //string strOrigen = Request.ServerVariables["HTTP_REFERER"];
+                    ////if (strOrigen.Equals("http://umas.ipciisa.cl/alumnosnetTR/Workflow.asp"))
+                    //if (strOrigen.Equals("http://10.0.0.2/Prueba.asp"))
+                    //{
+                    //    //if ((!(Convert.ToString(Request.Form["codcli1"])).Equals(String.Empty)) && (Request.ServerVariables["HTTP_REFERER"].Equals("http://umas.ipciisa.cl/alumnosnetTR/Workflow.asp")))
+                    //    if ((!(Convert.ToString(Request.Form["codcli1"])).Equals(String.Empty)) && (Request.ServerVariables["HTTP_REFERER"].Equals("http://10.0.0.2/Prueba.asp")))
+                    //    {
+                    //        if (!(Request.Form["codcli1"]).Equals(string.Empty))
+                    //        {
+
+                    //            StrCodCli = Convert.ToString(Request.Form["codcli1"]); // Linea para que rescate desde U+ el CODCLI  
+
+                    //        }
+                    //        else
+                    //        {
+                    //            //sin accion
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    strSession = Convert.ToString(FuncionesDesencriptar.Decrypt(HttpUtility.UrlDecode(Request.QueryString["session"])));
+                    //    if (!strSession.Equals(StrRutAlumno))
+                    //    {
+                    //        string Error = HttpUtility.UrlEncode(FuncionesDesencriptar.Encrypt("Error_Autorizacion"));
+                    //        Response.Redirect("PageErrorE.aspx?TypeError=" + Error);
+                    //    }
+                    //    else
+                    //    {
+                    //        // Sin Accion
+                    //    }
+                    //}
+	                    
+                    // para desarrollo comentar hasta aqui
+
+
                     Obtener_RutAlumno(StrCodCli);
-                    Session["StrRutAlumno"] = StrRutAlumno;
-
-                    if (!Page.IsPostBack)
-                        lee_grilla(StrRutAlumno);
+                    lee_grilla(StrRutAlumno);
                     lee_alumnos(StrCodCli);
+                    Session["StrRutAlumno"] = StrRutAlumno;
                     Session["StrCodCarrera"] = StrCodCarrera;
-
-                //}
-                //else
-                //{
-                //    Funciones FuncionesEncriptar = new Funciones();
-                //    string strError = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt("Error_Autorizacion"));
-                //    Response.Redirect("PageError.aspx?TypeError=" + strError);
-
-                ////}
-
-
-
-            //}
-            //catch (Exception)
-            //{
-                
-            //    throw;
-            //}
- 
+                    Session["StrCodCli"] = StrCodCli;
+                    
+                }
         }
 
         private void Obtener_RutAlumno(string StrCodCli)
@@ -108,7 +128,7 @@ namespace WorkflowSolicitudes.Presentacion
 
                 if (alumno.StrJornada.Equals("V"))
                 {
-                    LblJornada.Text = "VERSPERTINA";
+                    LblJornada.Text = "VESPERTINA";
 
                 } 
 
@@ -118,21 +138,21 @@ namespace WorkflowSolicitudes.Presentacion
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblMensaje.Text = String.Empty;
+      
             GridViewRow row = GridView1.SelectedRow;
             int intFolio = Convert.ToInt32(GridView1.DataKeys[row.RowIndex].Value);
 
             Funciones FuncionesEncriptar = new Funciones();
-            string fol = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt(Convert.ToString(intFolio)));
-            Response.Redirect("DetalleSolicitud.aspx?folio=" + fol);
+            string folio = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt(Convert.ToString(intFolio)));
+            string session = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt(StrRutAlumno));
+
+            Response.Redirect("DetalleSolicitud.aspx?folio=" + folio + "&session=" + session);
            
         }
 
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
-
-            lblMensaje.Text = String.Empty;
 
             int intFolioSolicitud = (int)GridView1.DataKeys[e.RowIndex].Values[0];
             GridViewRow Fila = GridView1.Rows[e.RowIndex];
@@ -143,23 +163,29 @@ namespace WorkflowSolicitudes.Presentacion
             
             if (EstaTomada.Equals(0))
 	        {
-               lblMensaje.Text = "La Solicitud con Folio " + intFolioSolicitud  +"  ya se esta ejecutando o se resolvio. No se puede anular";
-               return;
+               
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('La Solicitud con Folio " + intFolioSolicitud + "  se encuentra en proceso. No se puede anular');</script>"); 
+                return;
 		    
 	        }
             
 
-            NegSolicitud         NegAnulaSolicitud = new NegSolicitud();            
+            NegSolicitud NegAnulaSolicitud = new NegSolicitud();            
             int existe = NegAnulaSolicitud.EstaAnulado(intFolioSolicitud);
 
             if (existe.Equals(0))
             {
                 int id = NegAnulaSolicitud.AnulaSolicitud(intFolioSolicitud);
                 lee_grilla(StrRutAlumno);
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('Solicitud Folio  " + intFolioSolicitud + " fue Anulada.');</script>");
             }
             else
             {
-                lblMensaje.Text = "La Solicitud con Folio " + intFolioSolicitud  +"  ya se encuentra Anulada";
+                //lblMensaje.Text = "La Solicitud con Folio " + intFolioSolicitud  +"  ya se encuentra Anulada";
+
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('La Solicitud con Folio  " + intFolioSolicitud + " ya se encuentra Anulada.');</script>"); 
+
+                
                 return;
             }
             
@@ -167,7 +193,7 @@ namespace WorkflowSolicitudes.Presentacion
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            lblMensaje.Text = String.Empty;            
+                      
             GridView1.PageIndex = e.NewPageIndex;
             lee_grilla(StrRutAlumno);
         }
@@ -232,11 +258,10 @@ namespace WorkflowSolicitudes.Presentacion
 
         }
 
-        protected void lnkNuevaSolicitud_Click(object sender, EventArgs e)
+        public void btnNuevaSolicitud_Click1(object sender, EventArgs e)
         {
-
             Funciones FuncionesEncriptar = new Funciones();
-            string session = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt("StrCodCli"));
+            string session = HttpUtility.UrlEncode(FuncionesEncriptar.Encrypt(StrRutAlumno));
             Response.Redirect("NuevaSolicitud.aspx?session=" + session);
 
 

@@ -232,9 +232,10 @@ namespace WorkflowSolicitudes.Presentacion
             List<WorkflowSolicitudes.Entidades.DetalleSolicitud> LstHistory = new List<WorkflowSolicitudes.Entidades.DetalleSolicitud>();
             NegDetalleSolicitud NegDetSol = new NegDetalleSolicitud();
             LstHistory = NegDetSol.HistoriadelaSolicitud(intFolioSolicitud);
+            grvMostrarHistorial.Columns[5].ItemStyle.Width = 20;
             grvMostrarHistorial.DataSource = LstHistory; 
             grvMostrarHistorial.DataBind();
-
+       
             if (grvMostrarHistorial.Rows.Count.Equals(0))
             {
                 lblDetalleResponsable.Visible = false;

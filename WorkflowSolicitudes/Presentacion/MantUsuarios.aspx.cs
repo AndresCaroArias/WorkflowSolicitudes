@@ -41,25 +41,27 @@ namespace WorkflowSolicitudes
                 ddlUnidad.SelectedIndex = -1;
                 ddlUsuario.SelectedIndex = -1;
                 chkEstado.Checked = false;
-                
-               
-                lee_ComboUsuario();
-                lee_ComboUnidad();
-                lee_Rol();
-                intCodRoUser = Convert.ToInt32(Session["intCodRoUser"]);
-                Funciones ExisteAcceso = new Funciones();
+                txtRut.Enabled = true;
+                strAccion = "";
 
-                Boolean ExistePrivilegio = ExisteAcceso.TieneAcceso(intCodRoUser, StrPrivilegio);
 
-                if (ExistePrivilegio.Equals(false))
-                {
+            lee_ComboUsuario();
+            lee_ComboUnidad();
+            lee_Rol();
+            intCodRoUser = Convert.ToInt32(Session["intCodRoUser"]);
+            Funciones ExisteAcceso = new Funciones();
 
-                    ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR : Usted no tiene acceso a esta opción';</script>");
-            
-                   return;
-                }
+            Boolean ExistePrivilegio = ExisteAcceso.TieneAcceso(intCodRoUser, StrPrivilegio);
 
-                LoadGrid();
+            if (ExistePrivilegio.Equals(false))
+            {
+
+                ClientScript.RegisterStartupScript(this.GetType(), "myScript", "<script>javascript: alertify.alert('ERROR : Usted no tiene acceso a esta opción';</script>");
+
+                return;
+            }
+
+            LoadGrid();
                
             }
 
@@ -329,6 +331,8 @@ namespace WorkflowSolicitudes
                 ddlUnidad.SelectedIndex = -1;
                 ddlUsuario.SelectedIndex = -1;
                 chkEstado.Checked = false;
+                txtRut.Enabled = true;
+
              
 
         }
@@ -375,9 +379,10 @@ namespace WorkflowSolicitudes
             ddlUnidad.SelectedIndex = -1;
             ddlUsuario.SelectedIndex = -1;
             chkEstado.Checked = false;
+            txtRut.Enabled = true;
+
             
         }
 
-        
     }
 }

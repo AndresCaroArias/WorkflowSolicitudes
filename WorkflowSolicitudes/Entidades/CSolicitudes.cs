@@ -23,7 +23,6 @@ namespace WorkflowSolicitudes.Entidades
         private string _strDescEstado;
         private string _strJornada;
         private string _strOrigen;
-        private int intCodTipoSolicitud;
         private string _strActividad;
         private int _intSecuencia;
         private string _strDetalleSolicitud;

@@ -49,15 +49,6 @@ namespace WorkflowSolicitudes {
         protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
         
         /// <summary>
-        /// Control btnBuscar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnBuscar;
-        
-        /// <summary>
         /// Control lblError.
         /// </summary>
         /// <remarks>
@@ -227,6 +218,15 @@ namespace WorkflowSolicitudes {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar Calendar6;
+        
+        /// <summary>
+        /// Control btnBuscar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnBuscar;
         
         /// <summary>
         /// Control grvConsultaActividad.
